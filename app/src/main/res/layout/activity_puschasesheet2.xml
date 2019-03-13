@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.PurchaseSheet_2">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="주문서"
+            android:textColor="@color/colorAccent"
+            android:textSize="30dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorPrimaryDark">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="75dp"
+                android:text="결제가 완료"
+                android:textColor="@color/colorAccent"
+                android:textSize="28dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="되었습니다."
+                android:textColor="@color/colorAccent"
+                android:textSize="28dp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="65dp"
+            android:layout_marginBottom="2dp"
+            android:text="이용해주셔서 감사합니다."
+            android:textColor="@color/colorAccent"
+            android:textSize="28dp" />
+
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:background="@color/colorPrimary"
+            android:text="다운받기"
+            android:textColor="@color/colorWhite"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:id="@+id/btn_download"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorPrimaryDark">
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:text="결제정보"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:text="상품금액"
+                android:textColor="@color/colorAccent"
+                android:textSize="23dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginLeft="255dp"
+                android:layout_marginTop="3dp"
+                android:text="1ETH"
+                android:textColor="@color/colorAccent"
+                android:textSize="23dp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="7dp"
+            android:background="@color/colorPrimaryDark">
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="결제 후 잔액"
+            android:textColor="@color/colorAccent"
+            android:textSize="23dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결제금액"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorWhite"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1ETH"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/colorWhite"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="250dp"/>
+
+
+            </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="2dp"
+            android:text="주문상품"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
+
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="128dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimaryDark"
+            >
+
+            <LinearLayout
+                android:layout_width="342dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="5dp"
+                android:padding="3dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorSkyblue"
+                >
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/israel"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Israel"
+                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="양소연"
+                    android:layout_marginLeft="55dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="23dp"
+
+                    />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="342dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="3dp"
+                android:padding="3dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorWhite"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Israel"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1ETH"
+                    android:layout_marginLeft="200dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="23dp"
+
+                    />
+
+            </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+

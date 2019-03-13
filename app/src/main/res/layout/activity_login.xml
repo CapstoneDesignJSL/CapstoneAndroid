@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.Login" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:orientation="vertical"
+            android:layout_marginTop="70dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:src="@drawable/logo" />
+        </LinearLayout>
+        <!--
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="100dp"
+                    android:text="@string/logo"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="50sp"
+                    android:textStyle="bold" />-->
+
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <EditText
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/id"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:id="@+id/idText"
+                android:drawableStart="@drawable/ic_person_black_24dp"
+                android:drawableLeft="@drawable/ic_person_black_24dp"
+                android:layout_marginTop="70dp"
+                android:background="@color/colorWhite"
+
+                />
+
+
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorPrimaryDark"
+                android:id="@+id/password_Text"
+                android:drawableStart="@drawable/ic_https_black_24dp"
+                android:drawableLeft="@drawable/ic_https_black_24dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite"
+
+                />
+
+            <Button
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorWhite"
+                android:background="@color/colorPrimary"
+                android:text="구글로 로그인"
+                android:id="@+id/btn_login"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
+
+
+
