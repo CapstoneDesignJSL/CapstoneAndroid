@@ -59,7 +59,7 @@
             android:layout_margin="5dp"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_person_black_24dp"
+            android:src="@drawable/ic_person_black_24dp_b"
             android:id="@+id/img_user"/>
     </LinearLayout>
     <!--검사 완료-->
