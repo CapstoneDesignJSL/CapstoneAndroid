@@ -114,6 +114,7 @@
                 >
                 <!--이미지 글자크기 색 등등 지정 칸 만들기-->
                 <ImageView
+                    android:id="@+id/camera_button"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginLeft="5dp"
@@ -155,6 +156,17 @@
                     />
             </LinearLayout>
                 <!--상품 설명 적을 수 있는 곳-->
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                app:srcCompat="@android:color/holo_blue_bright"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                />
+
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
