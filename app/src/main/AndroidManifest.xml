@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jsl.capstonedesign">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-feature android:name="android.hardware.Camera"/>
 
@@ -16,18 +18,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.jsl.capstonedesign.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
+
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths"/>
         </provider>
 
 
-        <activity android:name=".activity.Order_inquiry"></activity>
+        <activity android:name=".activity.Order_inquiry"/>
         <activity android:name=".activity.Shopping_cart" />
         <activity android:name=".activity.User" />
         <activity android:name=".activity.Menu" />
@@ -45,6 +52,7 @@
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
