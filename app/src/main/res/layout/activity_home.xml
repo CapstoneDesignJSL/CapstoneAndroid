@@ -63,6 +63,7 @@
             android:id="@+id/img_user"/>
     </LinearLayout>
     <!--검사 완료-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -93,6 +94,12 @@
             />
     </LinearLayout>
 
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -257,6 +264,6 @@
 
     </LinearLayout>
 
-
+</ScrollView>
 </LinearLayout>
 

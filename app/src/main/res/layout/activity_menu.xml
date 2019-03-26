@@ -67,14 +67,14 @@
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="인물"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="그림"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 />
@@ -92,14 +92,14 @@
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="동물"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="사물"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 />
@@ -117,14 +117,14 @@
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="풍경"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="건물"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 />
@@ -142,14 +142,14 @@
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="음식"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
             <TextView
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:background="@color/colorPrimaryDark"
-                android:text="카테고리"
+                android:text="아이콘"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 />

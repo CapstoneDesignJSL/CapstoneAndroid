@@ -16,16 +16,5 @@ public class PurchaseSheet_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puschasesheet2);
 
-        Button btn_download =(Button) findViewById(R.id.btn_download);
-        btn_download.setOnClickListener(new Button.OnClickListener()
-                                     {
-                                         @Override
-                                         public void onClick(View v)
-                                         {
-                                             Intent intent = new Intent(getApplicationContext(), Download.class);
-                                             startActivity(intent);
-                                         }
-                                     }
-        );
     }
 }
