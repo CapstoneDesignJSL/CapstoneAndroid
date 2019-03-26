@@ -22,6 +22,7 @@ import com.jsl.capstonedesign.R;
 public class Home extends AppCompatActivity {
     //나중에 삭제할것  **수정
     private ImageView test;
+
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
 

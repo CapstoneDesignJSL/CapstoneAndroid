@@ -38,8 +38,6 @@
         <activity android:name=".activity.Shopping_cart" />
         <activity android:name=".activity.User" />
         <activity android:name=".activity.Menu" />
-        <activity android:name=".activity.Register_password" />
-        <activity android:name=".activity.Download" />
         <activity android:name=".activity.Upload_2" />
         <activity android:name=".activity.PurchaseSheet_2" />
         <activity android:name=".activity.PurchaseSheet_1" />
@@ -47,7 +45,6 @@
         <activity android:name=".activity.picture" />
         <activity android:name=".activity.Search_result" />
         <activity android:name=".activity.Home" />
-        <activity android:name=".activity.Register" />
         <activity android:name=".activity.Login" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

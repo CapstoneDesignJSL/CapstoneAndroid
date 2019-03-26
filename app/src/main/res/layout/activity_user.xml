@@ -91,7 +91,21 @@
             android:textSize="25dp"
             android:textColor="@color/colorAccent"
             android:layout_marginTop="10dp"
+            android:id="@+id/btn_order"
             />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="로그아웃"
+            android:textSize="25dp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btn_logout"
+            />
+
+
     </LinearLayout>
 
 </LinearLayout>
