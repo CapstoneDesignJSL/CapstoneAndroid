@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -156,38 +156,40 @@
                 </LinearLayout>
                     <!--상품 설명 적을 수 있는 곳-->
 
+
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="300dp"
-                    android:layout_height="200dp"
-                    app:srcCompat="@android:color/holo_blue_bright"
-                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@color/colorPrimaryDark"
                     android:layout_marginTop="8dp"
                     />
 
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:textColor="@color/colorAccent"
-                    android:background="@color/colorWhite"
-                    android:layout_marginBottom="5dp"
-                    />
+
+
             </LinearLayout>
 
 
-            <Button
-                android:layout_width="300dp"
-                android:layout_height="60dp"
-                android:background="@color/colorPrimary"
-                android:text="등록하기"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/btn_upload_register"
-                />
-
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:textColor="@color/colorAccent"
+            android:background="@color/colorWhite"
+            android:layout_marginBottom="5dp"
+            android:hint="상품설명"
+            />
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            android:text="등록하기"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_upload_register"
+            />
 
     </LinearLayout>
 
