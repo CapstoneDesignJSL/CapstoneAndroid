@@ -69,20 +69,20 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        Button btn_upload = (Button) getView().findViewById(R.id.btn_upload);
+        View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        Button btn_upload = (Button) view.findViewById(R.id.btn_upload);
         btn_upload.setOnClickListener(new Button.OnClickListener()
                                       {
                                           @Override
                                           public void onClick(View v)
                                           {
-                                              Intent intent = new Intent(getActivity(), Upload.class);
+                                              Intent intent = new Intent(getActivity(), Upload_2.class);
                                               startActivity(intent);
                                           }
                                       }
 
         );
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

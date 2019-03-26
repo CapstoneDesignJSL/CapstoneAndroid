@@ -38,11 +38,10 @@ public class Home extends AppCompatActivity {
 
 
 //        프래그먼트
-        final ImageView user = (ImageView) findViewById(R.id.img_user);
+        final ImageView menu = (ImageView) findViewById(R.id.img_menu);
         final LinearLayout notice = (LinearLayout) findViewById(R.id.notice);
 
-        user.setOnClickListener(new View.OnClickListener()
-                                      {
+        menu.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View view)
                                           {
@@ -113,13 +112,13 @@ public class Home extends AppCompatActivity {
 
         );
 
-        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setOnClickListener(new Button.OnClickListener()
+        ImageView img_user = (ImageView)findViewById(R.id.img_user);
+        img_user.setOnClickListener(new Button.OnClickListener()
                                       {
                                           @Override
                                           public void onClick(View v)
                                           {
-                                              Intent intent = new Intent(getApplicationContext(), Menu.class);
+                                              Intent intent = new Intent(getApplicationContext(), User.class);
                                               startActivity(intent);
                                           }
                                       }

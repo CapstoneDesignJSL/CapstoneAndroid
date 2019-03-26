@@ -34,7 +34,6 @@
 
         <activity android:name=".activity.Order_inquiry" />
         <activity android:name=".activity.Shopping_cart" />
-        <activity android:name=".activity.Menu" />
         <activity android:name=".activity.Upload_2" />
         <activity android:name=".activity.PurchaseSheet_2" />
         <activity android:name=".activity.PurchaseSheet_1" />
