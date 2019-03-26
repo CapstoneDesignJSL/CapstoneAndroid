@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.jsl.capstonedesign.R;
 
-public class upload extends AppCompatActivity {
+public class Upload extends AppCompatActivity {
 
     @Override
 
@@ -24,8 +24,17 @@ public class upload extends AppCompatActivity {
                                          @Override
                                          public void onClick(View v)
                                          {
-                                             Intent intent = new Intent(getApplicationContext(), Upload_2.class);
-                                             startActivity(intent);
+                                             //서버에 업로드 요청
+
+
+                                             if(true){ //업로드요청에 대해 받은 응답으로 트루값들어오면 진행
+
+                                                 Intent intent = new Intent(getApplicationContext(), Upload_2.class);
+                                                 startActivity(intent);
+
+                                             }else {
+                                                    //업로드에 실패하였습니다.
+                                             }
                                          }
                                      }
         );

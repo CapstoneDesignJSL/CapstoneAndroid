@@ -41,8 +41,8 @@
         <activity android:name=".activity.Upload_2" />
         <activity android:name=".activity.PurchaseSheet_2" />
         <activity android:name=".activity.PurchaseSheet_1" />
-        <activity android:name=".activity.upload" />
-        <activity android:name=".activity.picture" />
+        <activity android:name=".activity.Upload" />
+        <activity android:name=".activity.Picture" />
         <activity android:name=".activity.Search_result" />
         <activity android:name=".activity.Home" />
         <activity android:name=".activity.Login" />

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
 
-public class picture extends AppCompatActivity {
+public class Picture extends AppCompatActivity {
 
 //    구매하기 클릭시 결제 창으로 넘어감
     @Override
@@ -24,6 +24,7 @@ public class picture extends AppCompatActivity {
                                             @Override
                                             public void onClick(View v)
                                             {
+
                                                 Intent intent = new Intent(getApplicationContext(), PurchaseSheet_1.class);
                                                 startActivity(intent);
                                             }
