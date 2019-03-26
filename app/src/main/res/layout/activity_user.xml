@@ -83,6 +83,15 @@
 
         </LinearLayout>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="충전하기"
+            android:textSize="25dp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btn_charge"
+            />
 
         <Button
             android:layout_width="match_parent"
@@ -94,7 +103,6 @@
             android:id="@+id/btn_order"
             />
 
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -104,7 +112,6 @@
             android:layout_marginTop="10dp"
             android:id="@+id/btn_logout"
             />
-
 
     </LinearLayout>
 

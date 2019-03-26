@@ -55,21 +55,25 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:orientation="horizontal"
+            android:layout_height="635dp"
             android:background="@color/colorWhite"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="장바구니에 담긴 물품이 없습니다."
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorAccent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
-                />
+                android:text="충전을 위한 채굴 중입니다."
+                android:textColor="@color/colorAccent"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/gif_image"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
 
         </LinearLayout>
 
