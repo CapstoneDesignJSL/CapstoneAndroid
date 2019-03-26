@@ -33,7 +33,7 @@
                 android:resource="@xml/file_paths"/>
         </provider>
 
-
+        <activity android:name=".activity.Charge" />
         <activity android:name=".activity.Order_inquiry"/>
         <activity android:name=".activity.Shopping_cart" />
         <activity android:name=".activity.User" />

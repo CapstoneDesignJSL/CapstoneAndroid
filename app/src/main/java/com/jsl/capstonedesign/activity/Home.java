@@ -21,8 +21,6 @@ import com.jsl.capstonedesign.R;
 
 public class Home extends AppCompatActivity {
     //나중에 삭제할것  **수정
-    private ImageView test;
-
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
 
@@ -32,7 +30,6 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         //*************************************************로그인관련************
-        test = findViewById(R.id.img_cart);  //로그아웃 테스트버튼 나중에 버튼 새로 구현 **수정
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -51,14 +48,6 @@ public class Home extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
         //*************************************************로그인관련************
-
-        test.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.e("알람","리스너");
-                signOut();
-            }
-        });
 
         ImageView img_israel = (ImageView)findViewById(R.id.img_israel);
         img_israel.setOnClickListener(new Button.OnClickListener()
@@ -113,44 +102,17 @@ public class Home extends AppCompatActivity {
 
         );
 
-    }
+        ImageView img_cart = (ImageView)findViewById(R.id.img_cart);
+        img_cart.setOnClickListener(new Button.OnClickListener()
+                                    {
+                                        @Override
+                                        public void onClick(View v)
+                                        {
+                                            Intent intent = new Intent(getApplicationContext(), Shopping_cart.class);
+                                            startActivity(intent);
+                                        }
+                                    }
 
-    public void signOut() {
-        mGoogleApiClient.connect();
-        mGoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
-            @Override
-            public void onConnected(@Nullable Bundle bundle) {
-                mAuth.signOut();
-                if(mGoogleApiClient.isConnected()) {
-                    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(@NonNull Status status) {
-                            if (status.isSuccess()) {
-                                Log.v("알림", "로그아웃 성공");
-                                setResult(1);
-                            } else {
-                                setResult(0);
-                            }
-
-                            Intent intent = new Intent(getApplicationContext(),Login.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    });
-                }
-            }
-            @Override
-            public void onConnectionSuspended(int i) {
-
-                Log.v("알림", "Google API Client Connection Suspended");
-
-                setResult(-1);
-
-                finish();
-
-            }
-
-        });
-
+        );
     }
 }

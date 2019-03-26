@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -96,8 +98,17 @@ public class User extends AppCompatActivity {
                                         }
         );
 
-
-
+        Button btn_charge =(Button) findViewById(R.id.btn_charge);
+        btn_charge.setOnClickListener(new Button.OnClickListener()
+                                     {
+                                         @Override
+                                         public void onClick(View v)
+                                         {
+                                             Intent intent = new Intent(getApplicationContext(), Charge.class);
+                                             startActivity(intent);
+                                         }
+                                     }
+        );
     }
 
 
