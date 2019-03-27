@@ -72,14 +72,6 @@ public class Home extends AppCompatActivity {
                 .build();
         //*************************************************로그인관련************
 
-        test.setOnClickListener(new Button.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Log.e("알람","리스너");
-                signOut();
-            }
-        });
-
         ImageView img_israel = (ImageView)findViewById(R.id.img_israel);
         img_israel.setOnClickListener(new Button.OnClickListener()
                                 {
@@ -107,18 +99,6 @@ public class Home extends AppCompatActivity {
 
         );
 
-        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setOnClickListener(new Button.OnClickListener()
-                                      {
-                                          @Override
-                                          public void onClick(View v)
-                                          {
-                                              Intent intent = new Intent(getApplicationContext(), Menu.class);
-                                              startActivity(intent);
-                                          }
-                                      }
-
-        );
 
         ImageView img_user = (ImageView)findViewById(R.id.img_user);
         img_user.setOnClickListener(new Button.OnClickListener()
