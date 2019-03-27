@@ -33,30 +33,13 @@
                 android:resource="@xml/file_paths"/>
         </provider>
 
-        <activity android:name=".activity.Charge" />
-        <activity android:name=".activity.Order_inquiry"/>
-        <activity android:name=".activity.Shopping_cart" />
-<<<<<<< HEAD
-=======
-        <activity android:name=".activity.User" />
-        <activity android:name=".activity.Menu" />
->>>>>>> 54748137bbb266d125ed5024808c2370083b594a
-        <activity android:name=".activity.Upload_2" />
-        <activity android:name=".activity.PurchaseSheet_2" />
-        <activity android:name=".activity.PurchaseSheet_1" />
-        <activity android:name=".activity.Upload" />
-        <activity android:name=".activity.Picture" />
-        <activity android:name=".activity.Search_result" />
-        <activity android:name=".activity.Home" />
-        <activity android:name=".activity.Login" />
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
+        <<<<<<< HEAD
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+        <activity android:name=".activity.Menu" /><![CDATA[
+>>>>>>> 54748137bbb266d125ed5024808c2370083b594a
+        ]]>
+        <activity android:name=".activity.Home" />
+    </application>=======
+
 
 </manifest>
