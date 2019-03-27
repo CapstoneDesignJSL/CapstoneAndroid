@@ -20,3 +20,4 @@ public class Charge extends AppCompatActivity {
         Glide.with(this).load(R.drawable.coin).into(gifImage);
     }
 }
+ //test
