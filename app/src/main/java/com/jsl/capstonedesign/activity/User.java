@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -62,14 +64,14 @@ public class User extends AppCompatActivity {
 
         TextView text_logo_2 =(TextView) findViewById(R.id.text_logo_2);
         text_logo_2.setOnClickListener(new Button.OnClickListener()
-                                       {
-                                           @Override
-                                           public void onClick(View v)
-                                           {
-                                               Intent intent = new Intent(getApplicationContext(), Home.class);
-                                               startActivity(intent);
-                                           }
-                                       }
+                                     {
+                                         @Override
+                                         public void onClick(View v)
+                                         {
+                                             Intent intent = new Intent(getApplicationContext(), Home.class);
+                                             startActivity(intent);
+                                         }
+                                     }
         );
 
         ImageView img_search_3 =(ImageView) findViewById(R.id.img_search_3);
@@ -86,18 +88,27 @@ public class User extends AppCompatActivity {
 
         Button btn_order =(Button) findViewById(R.id.btn_order);
         btn_order.setOnClickListener(new Button.OnClickListener()
+                                        {
+                                            @Override
+                                            public void onClick(View v)
+                                            {
+                                                Intent intent = new Intent(getApplicationContext(), Order_inquiry.class);
+                                                startActivity(intent);
+                                            }
+                                        }
+        );
+
+        Button btn_charge =(Button) findViewById(R.id.btn_charge);
+        btn_charge.setOnClickListener(new Button.OnClickListener()
                                      {
                                          @Override
                                          public void onClick(View v)
                                          {
-                                             Intent intent = new Intent(getApplicationContext(), Order_inquiry.class);
+                                             Intent intent = new Intent(getApplicationContext(), Charge.class);
                                              startActivity(intent);
                                          }
                                      }
         );
-
-
-
     }
 
 

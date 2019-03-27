@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
 
@@ -50,19 +49,6 @@ public class Upload extends AppCompatActivity {
                                               startActivity(intent);
                                           }
                                       }
-        );
-
-
-        TextView txt_home =(TextView) findViewById(R.id.txt_home);
-        txt_home.setOnClickListener(new Button.OnClickListener()
-                                     {
-                                         @Override
-                                         public void onClick(View v)
-                                         {
-                                             Intent intent = new Intent(getApplicationContext(), Home.class);
-                                             startActivity(intent);
-                                         }
-                                     }
         );
     }
 }

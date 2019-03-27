@@ -3,11 +3,12 @@
     package="com.jsl.capstonedesign">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature android:name="android.hardware.Camera"/>
 
-    <uses-feature android:name="android.hardware.Camera" />
+
 
     <application
         android:allowBackup="true"
@@ -16,11 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activity.User"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -28,12 +28,16 @@
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
+
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
         </provider>
 
-        <activity android:name=".activity.Order_inquiry" />
+        <activity android:name=".activity.Charge" />
+        <activity android:name=".activity.Order_inquiry"/>
         <activity android:name=".activity.Shopping_cart" />
+        <activity android:name=".activity.User" />
+        <activity android:name=".activity.Menu" />
         <activity android:name=".activity.Upload_2" />
         <activity android:name=".activity.PurchaseSheet_2" />
         <activity android:name=".activity.PurchaseSheet_1" />
