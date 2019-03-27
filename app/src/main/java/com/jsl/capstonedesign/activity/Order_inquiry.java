@@ -26,7 +26,7 @@ public class Order_inquiry extends AppCompatActivity {
                                               Intent intent = new Intent(getApplicationContext(), Picture.class);
                                               startActivity(intent);
                                           }
-                                      }
+                                      }//test
 
         );
 
