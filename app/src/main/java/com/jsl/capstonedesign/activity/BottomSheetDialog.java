@@ -21,7 +21,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.bottom_sheet_layout, container, false);
 
-        Button btn_upload = (Button) v.findViewById(R.id.btn_upload);
+/*        Button btn_upload = v.findViewById(R.id.btn_upload);
         btn_upload.setOnClickListener(new Button.OnClickListener()
                                       {
                                           @Override
@@ -34,7 +34,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                                           }
                                       }
 
-        );
+        );*/
         return v;
     }
 
@@ -51,7 +51,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
 
         }catch(ClassCastException e){
             throw new ClassCastException(context.toString()
-                    + " must implemewnt BottomSheetListener");
+                    + " must implement BottomSheetListener");
         }
     }
 }
