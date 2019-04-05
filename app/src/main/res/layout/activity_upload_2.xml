@@ -33,142 +33,153 @@
         </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="30dp"
-                android:background="@color/colorPrimaryDark"
-                android:orientation="vertical"
-                >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            >
 
-                <!--라디오 버튼 구현 카테고리-->
-
-
-                <EditText
-                    android:layout_width="320dp"
-                    android:layout_height="50dp"
-                    android:hint="상품명"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="10dp"
-                    android:textColor="@color/colorAccent"
-                    android:textColorHint="@color/colorAccent"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginBottom="5dp"
-                    />
-
-                <Spinner
-                    android:layout_width="320dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:backgroundTint="@color/colorAccent"
-                    android:id="@+id/category"
-
-                    >
-
-
-
-                </Spinner>
-
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="판매가격"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                />
+            <!--라디오 버튼 구현 카테고리-->
 
 
             <EditText
                 android:layout_width="320dp"
                 android:layout_height="50dp"
-                android:hint="가격"
+                android:hint="상품명"
                 android:layout_gravity="center_horizontal"
                 android:padding="10dp"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorAccent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/colorWhite"
                 android:layout_marginBottom="5dp"
                 />
 
+            <Spinner
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@color/colorAccent"
+                android:id="@+id/category"
+
+                >
 
 
+
+            </Spinner>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="판매가격"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            />
+
+
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:hint="가격"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorWhite"
+            android:layout_marginBottom="5dp"
+            />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="30dp"
-                android:background="@color/colorPrimaryDark"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <!--이미지 글자크기 색 등등 지정 칸 만들기-->
-                    <ImageView
-                        android:id="@+id/camera_button"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_margin="5dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_camera_alt_black_24dp"
+                <!--이미지 글자크기 색 등등 지정 칸 만들기-->
+                <ImageView
+                    android:id="@+id/camera_button"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_camera_alt_black_24dp"
 
-                        />
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_margin="5dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_format_bold_black_24dp"
-
-                        />
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_margin="5dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_format_underlined_black_24dp"
-
-                        />
-
-
-                    <ImageView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_margin="5dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/ic_format_size_black_24dp"
-
-                        />
-                </LinearLayout>
-                    <!--상품 설명 적을 수 있는 곳-->
-
+                    />
 
                 <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_marginTop="8dp"
+                    android:id="@+id/gallery_button"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_baseline_dashboard_24px"
+
+                    />
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_format_bold_black_24dp"
+
+                    />
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_format_underlined_black_24dp"
+
                     />
 
 
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_format_size_black_24dp"
 
-
+                    />
             </LinearLayout>
+            <!--상품 설명 적을 수 있는 곳-->
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginTop="8dp"
+                />
+
+
+
+
+        </LinearLayout>
 
 
         <EditText

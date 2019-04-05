@@ -3,6 +3,7 @@ package com.jsl.capstonedesign.activity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,13 +24,14 @@ import com.jsl.capstonedesign.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Upload_2 extends AppCompatActivity {
 
-//    스피너 연결
+    //    스피너 연결
     private ArrayAdapter adapter;
     private Spinner spinner;
 
@@ -48,20 +50,20 @@ public class Upload_2 extends AppCompatActivity {
 //스피너 연결 끝
         Button btn_upload_register =(Button) findViewById(R.id.btn_upload_register);
         btn_upload_register.setOnClickListener(new Button.OnClickListener()
-                                     {
-                                         @Override
-                                         public void onClick(View v)
-                                         {
-                                             Intent intent = new Intent(getApplicationContext(), Upload.class);
-                                             startActivity(intent);
-                                         }
-                                     }
+                                               {
+                                                   @Override
+                                                   public void onClick(View v)
+                                                   {
+                                                       Intent intent = new Intent(getApplicationContext(), Upload.class);
+                                                       startActivity(intent);
+                                                   }
+                                               }
         );
 
         requirePermission();
 
-        ImageView image = (ImageView) findViewById(R.id.camera_button);
-        image.setOnClickListener(new View.OnClickListener() {
+        ImageView camera = (ImageView) findViewById(R.id.camera_button);
+        camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -77,6 +79,30 @@ public class Upload_2 extends AppCompatActivity {
                     //사진찍은 인텐트 코드 넣기
 
                     takePicture();
+                } else {
+                    Toast.makeText(Upload_2.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        ImageView gallery = (ImageView) findViewById(R.id.gallery_button);
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                boolean gallery = ContextCompat.checkSelfPermission
+                        (view.getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+
+
+                boolean write = ContextCompat.checkSelfPermission
+                        (view.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+
+                if (gallery && write) {
+                    //사진찍은 인텐트 코드 넣기
+
+                    getPicture();
                 } else {
                     Toast.makeText(Upload_2.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
                 }
@@ -124,6 +150,13 @@ public class Upload_2 extends AppCompatActivity {
 
     }
 
+    void getPicture(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
+    }
+
     private File createImageFile() throws IOException {
 
 
@@ -144,11 +177,25 @@ public class Upload_2 extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        ImageView imageView = (ImageView)findViewById(R.id.imageView);
         if(requestCode == 10){
-            ImageView imageView = (ImageView)findViewById(R.id.imageView);
+
             imageView.setImageBitmap(BitmapFactory.decodeFile(mCurrentPhotoPath));
 
+        }else if(requestCode == 1){
+            if(resultCode == RESULT_OK){
+                try{
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
+
+                    //이미지 표시
+                    imageView.setImageBitmap(img);
+                }catch(Exception e){
+                    e.printStackTrace();;
+                }
+            }
         }
 
     }
