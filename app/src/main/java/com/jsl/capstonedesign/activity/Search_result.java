@@ -28,7 +28,7 @@ public class Search_result extends AppCompatActivity {
 
         init();
 
-        getData();
+//        getData();
 
         TextView tx_logo =(TextView) findViewById(R.id.tx_logo);
         tx_logo.setOnClickListener(new Button.OnClickListener()
@@ -45,7 +45,7 @@ public class Search_result extends AppCompatActivity {
 
     }
     private void init() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView2);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
