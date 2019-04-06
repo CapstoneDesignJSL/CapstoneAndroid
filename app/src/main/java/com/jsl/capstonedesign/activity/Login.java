@@ -75,9 +75,9 @@ public class Login extends AppCompatActivity {
                                              finish();
 
                                              // 구글 로그인 생략
-                                             /*
+
                                              Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                                             startActivityForResult(signInIntent, RC_SIGN_IN);*/
+                                             startActivityForResult(signInIntent, RC_SIGN_IN);
 
                                          }
                                      }

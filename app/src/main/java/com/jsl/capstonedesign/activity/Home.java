@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.recyclerview.Data;
+import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +32,7 @@ public class Home extends AppCompatActivity implements BottomSheetDialog.BottomS
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
     private RecyclerAdapter adapter;
-
+//    private RecyclerView.Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +117,7 @@ public class Home extends AppCompatActivity implements BottomSheetDialog.BottomS
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new RecyclerAdapter();
+
         recyclerView.setAdapter(adapter);
     }
 

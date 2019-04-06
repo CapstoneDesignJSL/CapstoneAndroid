@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.recyclerview.Data;
+import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
 import java.util.Arrays;
 import java.util.List;
