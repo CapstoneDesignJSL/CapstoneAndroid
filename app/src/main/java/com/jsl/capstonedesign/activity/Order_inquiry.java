@@ -36,7 +36,7 @@ public class Order_inquiry extends AppCompatActivity {
                                        @Override
                                        public void onClick(View v)
                                        {
-                                           Intent intent = new Intent(getApplicationContext(), Home.class);
+                                           Intent intent = new Intent(getApplicationContext(), Main.class);
                                            startActivity(intent);
                                        }
                                    }
@@ -48,7 +48,7 @@ public class Order_inquiry extends AppCompatActivity {
                                                         @Override
                                                         public void onClick(View v)
                                                         {
-                                                            Intent intent = new Intent(getApplicationContext(), Search_result.class);
+                                                            Intent intent = new Intent(getApplicationContext(), SearchResultFragment.class);
                                                             startActivity(intent);
                                                         }
                                                     }

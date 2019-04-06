@@ -45,7 +45,7 @@ public class Upload extends AppCompatActivity {
                                           @Override
                                           public void onClick(View v)
                                           {
-                                              Intent intent = new Intent(getApplicationContext(), Search_result.class);
+                                              Intent intent = new Intent(getApplicationContext(), SearchResultFragment.class);
                                               startActivity(intent);
                                           }
                                       }

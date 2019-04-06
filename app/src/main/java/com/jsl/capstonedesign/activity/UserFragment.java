@@ -1,18 +1,20 @@
 package com.jsl.capstonedesign.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -21,30 +23,36 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
-public class User extends AppCompatActivity {
+public class UserFragment extends Fragment {
+
 
 
     private Button test;
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
 
+    View v;
+    private RecyclerAdapter adapter;
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        test = findViewById(R.id.btn_logout);  //로그아웃 버튼
+        v = inflater.inflate(R.layout.activity_user, container, false);
+        test = v.findViewById(R.id.btn_logout);  //로그아웃 버튼
         mAuth = FirebaseAuth.getInstance();
-
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                .enableAutoManage(new MainActivity(), new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -62,55 +70,32 @@ public class User extends AppCompatActivity {
             }
         });
 
-        TextView text_logo_2 =(TextView) findViewById(R.id.text_logo_2);
-        text_logo_2.setOnClickListener(new Button.OnClickListener()
-                                     {
-                                         @Override
-                                         public void onClick(View v)
-                                         {
-                                             Intent intent = new Intent(getApplicationContext(), Home.class);
-                                             startActivity(intent);
-                                         }
-                                     }
-        );
-
-        ImageView img_search_3 =(ImageView) findViewById(R.id.img_search_3);
-        img_search_3.setOnClickListener(new Button.OnClickListener()
-                                        {
-                                            @Override
-                                            public void onClick(View v)
-                                            {
-                                                Intent intent = new Intent(getApplicationContext(), Search_result.class);
-                                                startActivity(intent);
-                                            }
-                                        }
-        );
-
-        Button btn_order =(Button) findViewById(R.id.btn_order);
+        Button btn_order =(Button) v.findViewById(R.id.btn_order);
         btn_order.setOnClickListener(new Button.OnClickListener()
-                                        {
-                                            @Override
-                                            public void onClick(View v)
-                                            {
-                                                Intent intent = new Intent(getApplicationContext(), Order_inquiry.class);
-                                                startActivity(intent);
-                                            }
-                                        }
-        );
-
-        Button btn_charge =(Button) findViewById(R.id.btn_charge);
-        btn_charge.setOnClickListener(new Button.OnClickListener()
                                      {
                                          @Override
                                          public void onClick(View v)
                                          {
-                                             Intent intent = new Intent(getApplicationContext(), Charge.class);
+                                             Intent intent = new Intent(getActivity(), Order_inquiry.class);
                                              startActivity(intent);
                                          }
                                      }
         );
-    }
 
+        Button btn_charge =(Button) v.findViewById(R.id.btn_charge);
+        btn_charge.setOnClickListener(new Button.OnClickListener()
+                                      {
+                                          @Override
+                                          public void onClick(View v)
+                                          {
+                                              Intent intent = new Intent(getActivity(), Charge.class);
+                                              startActivity(intent);
+                                          }
+                                      }
+        );
+
+        return v;
+    }
 
     public void signOut() {
         mGoogleApiClient.connect();
@@ -124,14 +109,14 @@ public class User extends AppCompatActivity {
                         public void onResult(@NonNull Status status) {
                             if (status.isSuccess()) {
                                 Log.v("알림", "로그아웃 성공");
-                                setResult(1);
+                                getActivity().setResult(1);
                             } else {
-                                setResult(0);
+                                getActivity().setResult(0);
                             }
 
-                            Intent intent = new Intent(getApplicationContext(),Login.class);
+                            Intent intent = new Intent(getActivity(),Login.class);
                             startActivity(intent);
-                            finish();
+                            getActivity().finish();
                         }
                     });
                 }
@@ -141,9 +126,9 @@ public class User extends AppCompatActivity {
 
                 Log.v("알림", "Google API Client Connection Suspended");
 
-                setResult(-1);
+                getActivity().setResult(-1);
 
-                finish();
+                getActivity().finish();
 
             }
 
@@ -151,3 +136,5 @@ public class User extends AppCompatActivity {
 
     }
 }
+
+

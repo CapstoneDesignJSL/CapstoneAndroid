@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jsl.capstonedesign.R;
 
@@ -18,8 +18,21 @@ public class Picture extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_picture);
 
+        TextView titleTextView = findViewById(R.id.title_picture);
+        TextView priceTextView = findViewById(R.id.price_picture);
+        TextView contentTextView = findViewById(R.id.content_picture);
+
+        Intent intent = getIntent();
+        String bringTitle = intent.getStringExtra("title");
+        String bringContent = intent.getStringExtra("content");
+        int bringPrice = intent.getIntExtra("price",-1);
+
+        titleTextView.setText("그림 이름 : " + bringTitle);
+        titleTextView.setText("그림 가격 : " + String.valueOf(bringPrice));
+        titleTextView.setText(bringContent);
 
         Button btn_buy =(Button) findViewById(R.id.btn_buy);
         btn_buy.setOnClickListener(new Button.OnClickListener()
@@ -32,13 +45,13 @@ public class Picture extends AppCompatActivity {
                                         }
         );
 
-        TextView text_logo =(TextView) findViewById(R.id.text_logo);
+        TextView text_logo =(TextView) findViewById(R.id.txt_picture);
         text_logo.setOnClickListener(new Button.OnClickListener()
                                    {
                                        @Override
                                        public void onClick(View v)
                                        {
-                                           Intent intent = new Intent(getApplicationContext(), Home.class);
+                                           Intent intent = new Intent(getApplicationContext(), Main.class);
                                            startActivity(intent);
                                        }
                                    }
