@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
@@ -23,10 +24,14 @@ import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 import java.util.Arrays;
 import java.util.List;
 
-public class SearchResultFragment extends Fragment {
+public class SearchResultFragment extends Fragment  implements RecyclerAdapter.MyRecyclerViewClickListener {
 
     View v;
     private RecyclerAdapter adapter;
+    private RecyclerView recyclerView;
+    private ImageView search;
+
+
 
     @Nullable
     @Override
@@ -37,16 +42,53 @@ public class SearchResultFragment extends Fragment {
 
 
         v = inflater.inflate(R.layout.activity_search_result, container, false);
-        RecyclerView recyclerView = v.findViewById(R.id.recyclerView2);
+        recyclerView = v.findViewById(R.id.recyclerView2);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
+
         adapter = new RecyclerAdapter();
-        recyclerView.setAdapter(adapter);
-        getData();
+
+
+        init();
+//        getData();
+        search = v.findViewById(R.id.ic_search);
+
+        search.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View v)
+            {
+                adapter.setOnClickListener(SearchResultFragment.this);
+                recyclerView.setAdapter(adapter);
+                getData();
+            }
+
+        });
+
         return v;
     }
+
+    private void init() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new RecyclerAdapter();
+        recyclerView.setAdapter(adapter);
+    }
+
+    public void onItemClicked(int position, Data data) {
+        //Toast.makeText(getActivity().getApplicationContext(), position + " 번 아이템 클릭됨", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(v.getContext() , Picture.class);
+
+        intent.putExtra("title",data.getTitle()); /*송신*/
+        intent.putExtra("resid",data.getResId());
+        intent.putExtra("content",data.getContent());
+
+        v.getContext().startActivity(intent);
+    }
+
 
     private void getData() {
         // 임의의 데이터입니다.
