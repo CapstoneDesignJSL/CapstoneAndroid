@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecycler
 
         v.getContext().startActivity(intent);
     }
-
+///ㅇㄹㅇㄹ
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
