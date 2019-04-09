@@ -1,4 +1,4 @@
-package com.jsl.capstonedesign.activity;
+package com.jsl.capstonedesign.activity.FragmentView;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -75,7 +75,7 @@ public class MenuFragment extends Fragment {
                                           @Override
                                           public void onClick(View v)
                                           {
-                                              Intent intent = new Intent(getActivity(), Upload_2.class);
+                                              Intent intent = new Intent(getActivity(), Upload_2Fragment.class);
                                               startActivity(intent);
                                           }
                                       }

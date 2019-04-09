@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.FragmentView.SearchResultFragment;
 
 public class Order_inquiry extends AppCompatActivity {
 

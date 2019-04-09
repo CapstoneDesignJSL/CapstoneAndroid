@@ -1,4 +1,4 @@
-package com.jsl.capstonedesign.activity;
+package com.jsl.capstonedesign.activity.FragmentView;
 
 import android.Manifest;
 import android.content.Intent;
@@ -9,11 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.Upload;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,32 +33,35 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Upload_2 extends AppCompatActivity {
+public class Upload_2Fragment extends Fragment {
 
-    //    스피너 연결
+    View v;
     private ArrayAdapter adapter;
     private Spinner spinner;
 
-//    스피너 연결 끝
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
 
-    private String mCurrentPhotoPath;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_2);
-// 스피너 연결
-        spinner = (Spinner) findViewById(R.id.category);
-        adapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_dropdown_item);
+
+
+
+
+        v = inflater.inflate(R.layout.fragment_upload_2, container, false);
+
+        // 스피너 연결
+        spinner = (Spinner) v.findViewById(R.id.category);
+        adapter = ArrayAdapter.createFromResource(getContext(), R.array.category, android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        //스피너 연결 끝
 
-//스피너 연결 끝
-        Button btn_upload_register =(Button) findViewById(R.id.btn_upload_register);
+        Button btn_upload_register =(Button) v.findViewById(R.id.btn_upload_register);
         btn_upload_register.setOnClickListener(new Button.OnClickListener()
                                                {
                                                    @Override
                                                    public void onClick(View v)
                                                    {
-                                                       Intent intent = new Intent(getApplicationContext(), Upload.class);
+                                                       Intent intent = new Intent(getContext().getApplicationContext(), Upload.class);
                                                        startActivity(intent);
                                                    }
                                                }
@@ -62,7 +69,7 @@ public class Upload_2 extends AppCompatActivity {
 
         requirePermission();
 
-        ImageView camera = (ImageView) findViewById(R.id.camera_button);
+        ImageView camera = (ImageView) v.findViewById(R.id.camera_button);
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,13 +87,13 @@ public class Upload_2 extends AppCompatActivity {
 
                     takePicture();
                 } else {
-                    Toast.makeText(Upload_2.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
-        ImageView gallery = (ImageView) findViewById(R.id.gallery_button);
+        ImageView gallery = (ImageView) v.findViewById(R.id.gallery_button);
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,13 +111,18 @@ public class Upload_2 extends AppCompatActivity {
 
                     getPicture();
                 } else {
-                    Toast.makeText(Upload_2.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
 
+
+        return v;
     }
+
+
+    private String mCurrentPhotoPath;
 
 
 
@@ -121,7 +133,7 @@ public class Upload_2 extends AppCompatActivity {
 
         for (String permission : permissions) {
 
-            if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
+            if (ContextCompat.checkSelfPermission(getContext(), permission) == PackageManager.PERMISSION_DENIED) {
                 //권한이 허가가 안됬을 경우 요청할 권한을 모집하는 부분
                 listPermissionsNeeded.add(permission);
             }
@@ -131,7 +143,7 @@ public class Upload_2 extends AppCompatActivity {
         if (!listPermissionsNeeded.isEmpty()) {
 
             //권한 요청 하는 부분
-            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
+            ActivityCompat.requestPermissions(getActivity(), listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
         }
 
 
@@ -140,7 +152,7 @@ public class Upload_2 extends AppCompatActivity {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             File phtoFile = createImageFile();
-            Uri photoUri = FileProvider.getUriForFile(this,"com.jsl.capstonedesign.fileprovider",phtoFile);
+            Uri photoUri = FileProvider.getUriForFile(getContext(),"com.jsl.capstonedesign.fileprovider",phtoFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
             startActivityForResult(intent, 10);
         } catch (IOException e) {
@@ -163,7 +175,7 @@ public class Upload_2 extends AppCompatActivity {
         // Create an image file namΩe
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -176,16 +188,16 @@ public class Upload_2 extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        ImageView imageView = (ImageView)findViewById(R.id.imageView);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        ImageView imageView = (ImageView)v.findViewById(R.id.imageView);
         if(requestCode == 10){
 
             imageView.setImageBitmap(BitmapFactory.decodeFile(mCurrentPhotoPath));
 
         }else if(requestCode == 1){
-            if(resultCode == RESULT_OK){
+            if(resultCode == -1){
                 try{
-                    InputStream in = getContentResolver().openInputStream(data.getData());
+                    InputStream in = getContext().getContentResolver().openInputStream(data.getData());
 
                     Bitmap img = BitmapFactory.decodeStream(in);
                     in.close();
@@ -200,3 +212,4 @@ public class Upload_2 extends AppCompatActivity {
 
     }
 }
+

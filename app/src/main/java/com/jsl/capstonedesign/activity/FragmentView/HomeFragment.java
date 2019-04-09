@@ -1,81 +1,26 @@
-package com.jsl.capstonedesign.activity;
+package com.jsl.capstonedesign.activity.FragmentView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.Picture;
 import com.jsl.capstonedesign.activity.recyclerview.Data;
 import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class SearchResultFragment extends Fragment  implements RecyclerAdapter.MyRecyclerViewClickListener {
-
+public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecyclerViewClickListener {
     View v;
     private RecyclerAdapter adapter;
-    private RecyclerView recyclerView;
-    private ImageView search;
-
-
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             Bundle savedInstanceState) {
-
-
-
-        v = inflater.inflate(R.layout.activity_search_result, container, false);
-        recyclerView = v.findViewById(R.id.recyclerView2);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-
-        adapter = new RecyclerAdapter();
-
-
-        init();
-//        getData();
-        search = v.findViewById(R.id.ic_search);
-
-        search.setOnClickListener(new Button.OnClickListener(){
-
-            @Override
-            public void onClick(View v)
-            {
-                adapter.setOnClickListener(SearchResultFragment.this);
-                recyclerView.setAdapter(adapter);
-                getData();
-            }
-
-        });
-
-        return v;
-    }
-
-    private void init() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new RecyclerAdapter();
-        recyclerView.setAdapter(adapter);
-    }
 
     public void onItemClicked(int position, Data data) {
         //Toast.makeText(getActivity().getApplicationContext(), position + " 번 아이템 클릭됨", Toast.LENGTH_SHORT).show();
@@ -88,6 +33,33 @@ public class SearchResultFragment extends Fragment  implements RecyclerAdapter.M
 
         v.getContext().startActivity(intent);
     }
+///dfdf
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
+
+
+
+        v = inflater.inflate(R.layout.fragment_home, container, false);
+        RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new RecyclerAdapter();
+
+        adapter.setOnClickListener(HomeFragment.this);
+
+        recyclerView.setAdapter(adapter);
+        getData();
+
+        return v;
+    }
+
 
 
     private void getData() {

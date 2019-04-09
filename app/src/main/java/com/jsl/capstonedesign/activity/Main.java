@@ -15,6 +15,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.FragmentView.HomeFragment;
+import com.jsl.capstonedesign.activity.FragmentView.InquiryFragment;
+import com.jsl.capstonedesign.activity.FragmentView.SearchResultFragment;
+import com.jsl.capstonedesign.activity.FragmentView.Upload_2Fragment;
+import com.jsl.capstonedesign.activity.FragmentView.UserFragment;
 
 public class Main extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
     //나중에 삭제할것  **수정
@@ -29,7 +34,10 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
 
         final Fragment homeFragment = new HomeFragment();
         final Fragment searchFragment = new SearchResultFragment();
+        final Fragment inquiryFragment = new InquiryFragment();
+        final Fragment uploadFragment = new Upload_2Fragment();
         final Fragment userFragment = new UserFragment();
+
         openFragment(homeFragment);
 
         //*************************************************로그인관련************
@@ -76,9 +84,12 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
                                 openFragment(searchFragment);
                                 return true;
 
-                            case R.id.menuitem_bottombar_category:
-                                BottomSheetDialog bottomSheet = new BottomSheetDialog();
-                                bottomSheet.show(getSupportFragmentManager(),"Category");
+                            case R.id.menuitem_bottombar_inquire:
+                                openFragment(inquiryFragment);
+
+                                return true;
+                            case R.id.menuitem_bottombar_uproad:
+                                openFragment(uploadFragment);
 
                                 return true;
                             case R.id.menuitem_bottombar_user:

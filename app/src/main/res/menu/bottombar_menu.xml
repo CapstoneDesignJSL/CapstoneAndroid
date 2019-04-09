@@ -14,9 +14,14 @@
         android:icon="@drawable/ic_search_black_24dp"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menuitem_bottombar_category"
+        android:id="@+id/menuitem_bottombar_inquire"
         android:icon="@drawable/ic_menu_black_24dp"
-        android:title="CATEGORY"
+        android:title="INQUIRE"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menuitem_bottombar_uproad"
+        android:icon="@drawable/ic_baseline_cloud_upload_24px"
+        android:title="UPROAD"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_user"

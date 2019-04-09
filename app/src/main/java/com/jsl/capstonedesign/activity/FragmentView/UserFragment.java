@@ -1,19 +1,15 @@
-package com.jsl.capstonedesign.activity;
+package com.jsl.capstonedesign.activity.FragmentView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,6 +19,10 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.Charge;
+import com.jsl.capstonedesign.activity.Login;
+import com.jsl.capstonedesign.activity.MainActivity;
+import com.jsl.capstonedesign.activity.Order_inquiry;
 import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
 public class UserFragment extends Fragment {
@@ -42,7 +42,7 @@ public class UserFragment extends Fragment {
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-        v = inflater.inflate(R.layout.activity_user, container, false);
+        v = inflater.inflate(R.layout.fragment_user, container, false);
         test = v.findViewById(R.id.btn_logout);  //로그아웃 버튼
         mAuth = FirebaseAuth.getInstance();
 
@@ -114,7 +114,7 @@ public class UserFragment extends Fragment {
                                 getActivity().setResult(0);
                             }
 
-                            Intent intent = new Intent(getActivity(),Login.class);
+                            Intent intent = new Intent(getActivity(), Login.class);
                             startActivity(intent);
                             getActivity().finish();
                         }

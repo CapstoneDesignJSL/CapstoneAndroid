@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.FragmentView.SearchResultFragment;
+import com.jsl.capstonedesign.activity.FragmentView.Upload_2Fragment;
 
 public class Upload extends AppCompatActivity {
 
@@ -29,7 +31,7 @@ public class Upload extends AppCompatActivity {
 
                                              if(true){ //업로드요청에 대해 받은 응답으로 트루값들어오면 진행
 
-                                                 Intent intent = new Intent(getApplicationContext(), Upload_2.class);
+                                                 Intent intent = new Intent(getApplicationContext(), Upload_2Fragment.class);
                                                  startActivity(intent);
 
                                              }else {
