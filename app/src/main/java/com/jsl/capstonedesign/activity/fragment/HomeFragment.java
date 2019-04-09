@@ -1,4 +1,4 @@
-package com.jsl.capstonedesign.activity;
+package com.jsl.capstonedesign.activity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.Picture;
 import com.jsl.capstonedesign.activity.recyclerview.Data;
 import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 

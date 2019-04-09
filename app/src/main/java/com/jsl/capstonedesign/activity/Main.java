@@ -15,6 +15,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.fragment.HomeFragment;
+import com.jsl.capstonedesign.activity.fragment.UploadFragment;
+import com.jsl.capstonedesign.activity.fragment.UserFragment;
 
 public class Main extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
     //나중에 삭제할것  **수정
@@ -30,6 +33,7 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
         final Fragment homeFragment = new HomeFragment();
         final Fragment searchFragment = new SearchResultFragment();
         final Fragment userFragment = new UserFragment();
+        final Fragment uploadFragment = new UploadFragment();
         openFragment(homeFragment);
 
         //*************************************************로그인관련************
@@ -77,9 +81,10 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
                                 return true;
 
                             case R.id.menuitem_bottombar_category:
-                                BottomSheetDialog bottomSheet = new BottomSheetDialog();
+                               openFragment(uploadFragment);
+                               /* BottomSheetDialog bottomSheet = new BottomSheetDialog();
                                 bottomSheet.show(getSupportFragmentManager(),"Category");
-
+                                */
                                 return true;
                             case R.id.menuitem_bottombar_user:
                                 openFragment(userFragment);

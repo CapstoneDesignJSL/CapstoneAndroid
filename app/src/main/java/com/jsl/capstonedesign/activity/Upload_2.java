@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.fragment.UploadFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class Upload_2 extends AppCompatActivity {
                                                    @Override
                                                    public void onClick(View v)
                                                    {
-                                                       Intent intent = new Intent(getApplicationContext(), Upload.class);
+                                                       Intent intent = new Intent(getApplicationContext(), UploadFragment.class);
                                                        startActivity(intent);
                                                    }
                                                }

@@ -1,4 +1,4 @@
-package com.jsl.capstonedesign.activity;
+package com.jsl.capstonedesign.activity.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +23,10 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.Charge;
+import com.jsl.capstonedesign.activity.Login;
+import com.jsl.capstonedesign.activity.MainActivity;
+import com.jsl.capstonedesign.activity.Order_inquiry;
 import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
 public class UserFragment extends Fragment {
@@ -114,7 +118,7 @@ public class UserFragment extends Fragment {
                                 getActivity().setResult(0);
                             }
 
-                            Intent intent = new Intent(getActivity(),Login.class);
+                            Intent intent = new Intent(getActivity(), Login.class);
                             startActivity(intent);
                             getActivity().finish();
                         }

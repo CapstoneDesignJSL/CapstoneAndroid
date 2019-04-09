@@ -16,7 +16,7 @@
     <item
         android:id="@+id/menuitem_bottombar_category"
         android:icon="@drawable/ic_menu_black_24dp"
-        android:title="CATEGORY"
+        android:title="UPLOAD"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_user"

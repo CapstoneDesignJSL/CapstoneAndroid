@@ -1,4 +1,4 @@
-package com.jsl.capstonedesign.activity;
+package com.jsl.capstonedesign.activity.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.Upload_2;
 
 
 /**
