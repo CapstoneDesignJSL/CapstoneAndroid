@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.jsl.capstonedesign.R;
-import com.jsl.capstonedesign.activity.Upload_2;
+//import com.jsl.capstonedesign.activity.Upload_2;
 
 
 /**
@@ -76,8 +76,8 @@ public class MenuFragment extends Fragment {
                                           @Override
                                           public void onClick(View v)
                                           {
-                                              Intent intent = new Intent(getActivity(), Upload_2.class);
-                                              startActivity(intent);
+//                                              Intent intent = new Intent(getActivity(), Upload_2.class);
+//                                              startActivity(intent);
                                           }
                                       }
 

@@ -1,5 +1,4 @@
 package com.jsl.capstonedesign.activity;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,14 +13,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.jsl.capstonedesign.R;
-import com.jsl.capstonedesign.activity.fragment.UploadFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,23 +26,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Upload_2 extends AppCompatActivity {
 
-    //    스피너 연결
-    private ArrayAdapter adapter;
-    private Spinner spinner;
-
-//    스피너 연결 끝
-
+public class UploadActivity extends AppCompatActivity {
     private String mCurrentPhotoPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_2);
+        setContentView(R.layout.activity_upload);
 // 스피너 연결
-        spinner = (Spinner) findViewById(R.id.category);
-        adapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+//        spinner = (Spinner) findViewById(R.id.category);
+//        adapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
 
 //스피너 연결 끝
         Button btn_upload_register =(Button) findViewById(R.id.btn_upload_register);
@@ -55,8 +46,9 @@ public class Upload_2 extends AppCompatActivity {
                                                    @Override
                                                    public void onClick(View v)
                                                    {
-                                                       Intent intent = new Intent(getApplicationContext(), UploadFragment.class);
+                                                       Intent intent = new Intent(getApplicationContext(), Upload2Activity.class);
                                                        startActivity(intent);
+                                                       finish();
                                                    }
                                                }
         );
@@ -80,9 +72,8 @@ public class Upload_2 extends AppCompatActivity {
                     //사진찍은 인텐트 코드 넣기
 
                     takePicture();
-                } else {
-                    Toast.makeText(Upload_2.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
-                }
+                } else
+                    Toast.makeText(UploadActivity.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -105,7 +96,7 @@ public class Upload_2 extends AppCompatActivity {
 
                     getPicture();
                 } else {
-                    Toast.makeText(Upload_2.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadActivity.this, "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
                 }
 
             }

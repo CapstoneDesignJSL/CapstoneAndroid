@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
         android:id="@+id/menuitem_bottombar_home"
         android:icon="@drawable/ic_baseline_home_24px"
@@ -14,7 +13,12 @@
         android:icon="@drawable/ic_search_black_24dp"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menuitem_bottombar_category"
+        android:id="@+id/menuitem_bottombar_inquire"
+        android:icon="@drawable/ic_menu_black_24dp"
+        android:title="INQUIRE"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menuitem_bottombar_uproad"
         android:icon="@drawable/ic_menu_black_24dp"
         android:title="UPLOAD"
         app:showAsAction="ifRoom"/>
@@ -23,6 +27,5 @@
         android:icon="@drawable/ic_person_black_24dp"
         android:title="USER"
         app:showAsAction="ifRoom"/>
-
 
 </menu>

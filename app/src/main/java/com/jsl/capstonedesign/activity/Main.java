@@ -1,5 +1,6 @@
 package com.jsl.capstonedesign.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -16,7 +17,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.fragment.HomeFragment;
-import com.jsl.capstonedesign.activity.fragment.UploadFragment;
+import com.jsl.capstonedesign.activity.fragment.InquiryFragment;
 import com.jsl.capstonedesign.activity.fragment.UserFragment;
 
 public class Main extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
@@ -33,7 +34,7 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
         final Fragment homeFragment = new HomeFragment();
         final Fragment searchFragment = new SearchResultFragment();
         final Fragment userFragment = new UserFragment();
-        final Fragment uploadFragment = new UploadFragment();
+        final Fragment inquiryFragment = new InquiryFragment();
         openFragment(homeFragment);
 
         //*************************************************로그인관련************
@@ -62,7 +63,6 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -80,12 +80,17 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
                                 openFragment(searchFragment);
                                 return true;
 
-                            case R.id.menuitem_bottombar_category:
-                               openFragment(uploadFragment);
-                               /* BottomSheetDialog bottomSheet = new BottomSheetDialog();
-                                bottomSheet.show(getSupportFragmentManager(),"Category");
-                                */
+                            case R.id.menuitem_bottombar_inquire:
+                                openFragment(inquiryFragment);
+
                                 return true;
+                            case R.id.menuitem_bottombar_uproad:
+                                //openFragment(upload_2Fragment);
+                                Intent intent = new Intent(getApplicationContext(), UploadActivity.class);
+                                startActivity(intent);
+
+                                return true;
+
                             case R.id.menuitem_bottombar_user:
                                 openFragment(userFragment);
                                 return true;
