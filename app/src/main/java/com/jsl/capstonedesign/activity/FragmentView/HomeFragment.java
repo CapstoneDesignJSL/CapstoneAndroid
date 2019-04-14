@@ -4,8 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,15 +41,12 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecycler
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
-
-
         v = inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+
+        StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2,1);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter = new RecyclerAdapter();
 
@@ -77,10 +75,10 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecycler
                 "러시아7 설명 텍스트"
         );
         List<Integer> listResId = Arrays.asList(
-                R.drawable.israel,
+                R.drawable.womenexample,
                 R.drawable.poland,
+                R.drawable.manexample,
                 R.drawable.russia,
-                R.drawable.russia_2,
                 R.drawable.russia_2,
                 R.drawable.russia_2,
                 R.drawable.russia_2,

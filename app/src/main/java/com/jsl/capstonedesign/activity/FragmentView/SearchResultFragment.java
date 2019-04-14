@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,15 +41,10 @@ public class SearchResultFragment extends Fragment  implements RecyclerAdapter.M
         v = inflater.inflate(R.layout.fragment_search_result, container, false);
         recyclerView = v.findViewById(R.id.recyclerView2);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-
+        StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2,1);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter = new RecyclerAdapter();
-
-
-        init();
-//        getData();
         search = v.findViewById(R.id.ic_search);
 
         search.setOnClickListener(new Button.OnClickListener(){
@@ -66,12 +62,6 @@ public class SearchResultFragment extends Fragment  implements RecyclerAdapter.M
         return v;
     }
 
-    private void init() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new RecyclerAdapter();
-        recyclerView.setAdapter(adapter);
-    }
 
     public void onItemClicked(int position, Data data) {
         //Toast.makeText(getActivity().getApplicationContext(), position + " 번 아이템 클릭됨", Toast.LENGTH_SHORT).show();
