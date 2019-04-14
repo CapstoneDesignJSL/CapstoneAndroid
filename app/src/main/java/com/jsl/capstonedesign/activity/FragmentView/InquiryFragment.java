@@ -83,7 +83,7 @@ public class InquiryFragment extends Fragment implements RecyclerAdapter.MyRecyc
         RecyclerAdapter new_adapter;
 
         v = inflater.inflate(R.layout.fragment_inquiry, container, false);
-        final RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = v.findViewById(R.id.recyclerView_frag_inquiry);
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
