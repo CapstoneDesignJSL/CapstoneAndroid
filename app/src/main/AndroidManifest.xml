@@ -40,12 +40,10 @@
         <activity android:name=".activity.PurchaseSheet_2" />
         <activity android:name=".activity.PurchaseSheet_1" />
         <!--<activity android:name=".activity.fragment.UploadFragment" />-->
-        <activity android:name=".activity.UploadActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
         <activity android:name=".activity.Upload2Activity"/>
         <activity android:name=".activity.Picture" />
-        <activity android:name=".activity.Main" />
+        <activity android:name=".activity.Main"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".activity.Login" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

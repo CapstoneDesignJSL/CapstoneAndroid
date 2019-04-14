@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/imageView_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@+id/hashTag_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="HASH_TAG_LIST"
+        android:textSize="20dp"
+        android:textColor="@android:color/darker_gray"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/price_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="PRICE"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:textSize="15dp"
+        android:textColor="@android:color/darker_gray"/>
+
+</LinearLayout>

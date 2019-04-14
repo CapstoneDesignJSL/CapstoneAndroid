@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuitem_homfagment_all"
+        android:title="종합"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menuitem_homfagment_figure"
+        android:title="인물"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menuitem_homfagment_attraction"
+        android:title="관광지"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menuitem_homfagment_clothes"
+        android:title="의류"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menuitem_homfagment_architects"
+        android:title="건물"
+        app:showAsAction="ifRoom"/>
+
+
+</menu>
