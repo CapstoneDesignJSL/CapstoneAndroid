@@ -44,6 +44,5 @@ dependencies {
     implementation 'com.github.angads25:toggle:1.0.0'
 
 
-
 }
 apply plugin: 'com.google.gms.google-services'

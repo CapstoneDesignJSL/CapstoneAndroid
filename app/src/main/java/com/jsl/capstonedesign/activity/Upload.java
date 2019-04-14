@@ -41,16 +41,5 @@ public class Upload extends AppCompatActivity {
                                      }
         );
 
-        ImageView img_search_2 =(ImageView) findViewById(R.id.img_search_2);
-        img_search_2.setOnClickListener(new Button.OnClickListener()
-                                      {
-                                          @Override
-                                          public void onClick(View v)
-                                          {
-                                              Intent intent = new Intent(getApplicationContext(), SearchResultFragment.class);
-                                              startActivity(intent);
-                                          }
-                                      }
-        );
     }
 }
