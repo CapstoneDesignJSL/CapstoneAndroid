@@ -29,12 +29,13 @@ public class UserFragment extends Fragment {
 
 
 
-    private Button test;
+    private Button btn_logout;
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
 
     View v;
-    private RecyclerAdapter adapter;
+
+    private final String TAG = getClass().getSimpleName();
 
     @Nullable
     @Override
@@ -43,7 +44,7 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.fragment_user, container, false);
-        test = v.findViewById(R.id.btn_logout);  //로그아웃 버튼
+        btn_logout = v.findViewById(R.id.btn_logout);  //로그아웃 버튼
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -62,10 +63,10 @@ public class UserFragment extends Fragment {
                 .build();
         //*************************************************로그인관련************
 
-        test.setOnClickListener(new Button.OnClickListener(){
+        btn_logout.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Log.e("알람","리스너");
+                Log.e(TAG,"로그아웃");
                 signOut();
             }
         });

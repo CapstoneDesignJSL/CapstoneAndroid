@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.gms.auth.api.Auth;
@@ -14,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.FragmentView.HomeFragment;
 import com.jsl.capstonedesign.activity.FragmentView.InquiryFragment;
@@ -25,12 +27,19 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
     //나중에 삭제할것  **수정
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
-
+    final private String TAG = getClass().getSimpleName()+"tag";
 //    private RecyclerView.Adapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser user ;
+
+//        user = mAuth.getCurrentUser();
+//
+//        Log.e(TAG,user.getDisplayName());
 
         final Fragment homeFragment = new HomeFragment();
         final Fragment searchFragment = new SearchResultFragment();

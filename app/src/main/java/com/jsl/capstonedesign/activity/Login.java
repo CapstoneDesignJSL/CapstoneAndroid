@@ -2,6 +2,7 @@ package com.jsl.capstonedesign.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -25,26 +28,48 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.jsl.capstonedesign.R;
+import com.jsl.capstonedesign.activity.Retrofit.ApiService;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Login extends AppCompatActivity {
 
-    final private String TAG = getClass().getSimpleName();
-
+    //로그인
+    public static GoogleSignInAccount account;
     private static final int RC_SIGN_IN = 1001;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+    FirebaseUser user;
+    //retrofit
+    private Retrofit retrofit ;
+    private ApiService apiService;
+
+    String ans; //지갑 여부인데 나중에수정
+    String email="";
+
+    //log
+    final private String TAG = getClass().getSimpleName()+"tag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Log.e(TAG, "onCreate in Login");
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
+
 
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -64,14 +89,33 @@ public class Login extends AppCompatActivity {
                                          public void onClick(View v)
                                          {
 
+
+                                             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                                             startActivityForResult(signInIntent, RC_SIGN_IN);
+
+
+//                                             if(!haveWallet())
+//                                             {
+//                                                 //지갑정보가 없으니 지갑생성하시겠읍니까? 토스트 메세지 띄우기 **수정
+//                                                 //이후 yes누르면 지갑생성 엑티비티로이동
+//                                                 //거절하면 이용하실 수 없습니다 하면서 로그아웃시키기
+//                                                 signOut();
+//
+//
+//                                             }else{
+//                                                 //지갑 정보가 있으므로 진행
+//
+//                                                 Intent intent = new Intent(getApplicationContext(), Main.class);
+//                                                 startActivity(intent);
+//                                                 finish();
+//
+//                                             }
+
+//                                              test용 코드
                                              Intent intent = new Intent(getApplicationContext(), Main.class);
                                              startActivity(intent);
                                              finish();
 
-                                             // 구글 로그인 생략
-
-                                             //Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                                             //startActivityForResult(signInIntent, RC_SIGN_IN);
 
                                          }
                                      }
@@ -82,14 +126,17 @@ public class Login extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
         if(currentUser!=null){ // 만약 로그인이 되어있으면 다음 액티비티 실행
 
-            haveWallet();
-            Intent intent = new Intent(getApplicationContext(), Main.class);
-            startActivity(intent);
-            finish();
+            if(haveWallet()){
 
-
+                Intent intent = new Intent(getApplicationContext(), Main.class);
+                startActivity(intent);
+                finish();
+            }else{
+                signOut();
+            }
 
         }
     }
@@ -97,6 +144,7 @@ public class Login extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG,"onAcitvityResult");
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -104,26 +152,21 @@ public class Login extends AppCompatActivity {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
-
-                Log.d(TAG, "이름 =" + account.getDisplayName());
-                Log.d(TAG, "이메일=" + account.getEmail());
-                Log.d(TAG, "getId()=" + account.getId());
-                Log.d(TAG, "getAccount()=" + account.getAccount());
-                Log.d(TAG, "getIdToken()=" + account.getIdToken());
+                 account = result.getSignInAccount();
+                 email = account.getEmail();
+                Log.e(TAG, "이름 =" + account.getDisplayName());
+                Log.e(TAG, "이메일=" + email);
+                Log.e(TAG, "getId()=" + account.getId());
+                Log.e(TAG, "getAccount()=" + account.getAccount());
+                Log.e(TAG, "getIdToken()=" + account.getIdToken());
                 firebaseAuthWithGoogle(account);
-
-                haveWallet();
-                Intent intent = new Intent(getApplicationContext(), Main.class);
-                startActivity(intent);
-                finish();
 
 
 
             } else {
                 // Google Sign In failed, update UI appropriately
                 // ...
-                Log.d(TAG, "로그인 실패");
+                Log.e(TAG, "로그인 실패");
             }
 
         }
@@ -139,9 +182,9 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                            finish();
+//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                            startActivity(intent);
+//                            finish();
                             Log.d(TAG, "signInWithCredential:success");
                         } else {
                             // If sign in fails, display a message to the user.
@@ -153,13 +196,79 @@ public class Login extends AppCompatActivity {
                         // ...
                     }
                 });
+
+
     }
 
     private boolean haveWallet(){
-        //이더 지갑 갖고있는지 조회하는 함수 **추후 수정하기
-        //지갑정보없다면
 
-        return true;
+        Log.e(TAG,"haveWallet, user email = "+email);
+
+        retrofit = new Retrofit.Builder()
+                    .baseUrl(ApiService.API_URL)
+                    .build();
+        apiService = retrofit.create(ApiService.class);
+
+
+        //Part of GET
+        Call<ResponseBody> comment  = apiService.getComment(email);
+
+        comment.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.e(TAG,"onResponse in haveWallet");
+                try {
+                    ans = response.body().string();
+                    Log.e(TAG, "haveWallet? " + ans);
+
+                } catch (IOException e){
+                    e.printStackTrace();
+                    Log.e(TAG, "error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
+        return  Boolean.parseBoolean(ans);
+    }
+
+
+    //로그아웃-------------------------------------------------------
+    public void signOut() {
+        mGoogleApiClient.connect();
+        mGoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+            @Override
+            public void onConnected(@Nullable Bundle bundle) {
+                mAuth.signOut();
+                if(mGoogleApiClient.isConnected()) {
+                    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(@NonNull Status status) {
+                            if (!status.isSuccess()) {
+                                Log.e(TAG, "로그아웃 실패");
+                            }else{
+                                Log.e(TAG, "로그아웃");
+
+                            }
+
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onConnectionSuspended(int i) {
+
+                Log.v("알림", "Google API Client Connection Suspended");
+
+
+            }
+
+        });
+
     }
 
 }
