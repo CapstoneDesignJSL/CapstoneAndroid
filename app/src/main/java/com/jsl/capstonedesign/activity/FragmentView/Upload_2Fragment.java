@@ -49,11 +49,7 @@ public class Upload_2Fragment extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_upload_2, container, false);
 
-        // 스피너 연결
-        spinner = (Spinner) v.findViewById(R.id.category);
-        adapter = ArrayAdapter.createFromResource(getContext(), R.array.category, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        //스피너 연결 끝
+
 
         Button btn_upload_register =(Button) v.findViewById(R.id.btn_upload_register);
         btn_upload_register.setOnClickListener(new Button.OnClickListener()
