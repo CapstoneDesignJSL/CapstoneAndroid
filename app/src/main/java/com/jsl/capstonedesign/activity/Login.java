@@ -92,53 +92,33 @@ public class Login extends AppCompatActivity {
 
                                              Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                                              startActivityForResult(signInIntent, RC_SIGN_IN);
+//                                             finish();
 
-
-//                                             if(!haveWallet())
-//                                             {
-//                                                 //지갑정보가 없으니 지갑생성하시겠읍니까? 토스트 메세지 띄우기 **수정
-//                                                 //이후 yes누르면 지갑생성 엑티비티로이동
-//                                                 //거절하면 이용하실 수 없습니다 하면서 로그아웃시키기
-//                                                 signOut();
-//
-//
-//                                             }else{
-//                                                 //지갑 정보가 있으므로 진행
-//
-//                                                 Intent intent = new Intent(getApplicationContext(), Main.class);
-//                                                 startActivity(intent);
-//                                                 finish();
-//
-//                                             }
-
-//                                              test용 코드
-                                             Intent intent = new Intent(getApplicationContext(), Main.class);
-                                             startActivity(intent);
-                                             finish();
+////                                              test용 코드
+//                                             Intent intent = new Intent(getApplicationContext(), Main.class);
+//                                             startActivity(intent);
+//                                             finish();
 
 
                                          }
                                      }
+
+
         );
+
+
     }
 
     public void onStart() { // 사용자가 현재 로그인되어 있는지 확인
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser!=null) {
+                    Intent intent = new Intent(getApplicationContext(), Main.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-        if(currentUser!=null){ // 만약 로그인이 되어있으면 다음 액티비티 실행
-
-            if(haveWallet()){
-
-                Intent intent = new Intent(getApplicationContext(), Main.class);
-                startActivity(intent);
-                finish();
-            }else{
-                signOut();
-            }
-
-        }
     }
 
     @Override
@@ -156,10 +136,15 @@ public class Login extends AppCompatActivity {
                  email = account.getEmail();
                 Log.e(TAG, "이름 =" + account.getDisplayName());
                 Log.e(TAG, "이메일=" + email);
-                Log.e(TAG, "getId()=" + account.getId());
-                Log.e(TAG, "getAccount()=" + account.getAccount());
-                Log.e(TAG, "getIdToken()=" + account.getIdToken());
+//                Log.e(TAG, "getId()=" + account.getId());
+//                Log.e(TAG, "getAccount()=" + account.getAccount());
+//                Log.e(TAG, "getIdToken()=" + account.getIdToken());
                 firebaseAuthWithGoogle(account);
+
+//                String wallet=data.getStringExtra("result");
+                    Intent intent = new Intent(Login.this, Main.class);
+                    startActivity(intent);
+                    finish();
 
 
 
@@ -182,7 +167,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                            Intent intent = new Intent(getApplicationContext(), Main.class);
 //                            startActivity(intent);
 //                            finish();
                             Log.d(TAG, "signInWithCredential:success");
@@ -200,75 +185,8 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private boolean haveWallet(){
-
-        Log.e(TAG,"haveWallet, user email = "+email);
-
-        retrofit = new Retrofit.Builder()
-                    .baseUrl(ApiService.API_URL)
-                    .build();
-        apiService = retrofit.create(ApiService.class);
 
 
-        //Part of GET
-        Call<ResponseBody> comment  = apiService.getComment(email);
 
-        comment.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.e(TAG,"onResponse in haveWallet");
-                try {
-                    ans = response.body().string();
-                    Log.e(TAG, "haveWallet? " + ans);
-
-                } catch (IOException e){
-                    e.printStackTrace();
-                    Log.e(TAG, "error");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
-
-        return  Boolean.parseBoolean(ans);
-    }
-
-
-    //로그아웃-------------------------------------------------------
-    public void signOut() {
-        mGoogleApiClient.connect();
-        mGoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
-            @Override
-            public void onConnected(@Nullable Bundle bundle) {
-                mAuth.signOut();
-                if(mGoogleApiClient.isConnected()) {
-                    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-                        @Override
-                        public void onResult(@NonNull Status status) {
-                            if (!status.isSuccess()) {
-                                Log.e(TAG, "로그아웃 실패");
-                            }else{
-                                Log.e(TAG, "로그아웃");
-
-                            }
-
-                        }
-                    });
-                }
-            }
-            @Override
-            public void onConnectionSuspended(int i) {
-
-                Log.v("알림", "Google API Client Connection Suspended");
-
-
-            }
-
-        });
-
-    }
 
 }

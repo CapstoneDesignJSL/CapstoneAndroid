@@ -97,10 +97,9 @@ public class InquiryFragment extends Fragment implements RecyclerAdapter.MyRecyc
 
         getSellData(new_adapter);
 
-        //버튼 누를떄마다 어댑터 초기화.
+/*        //버튼 누를떄마다 어댑터 초기화.
         LabeledSwitch labeledSwitch = v.findViewById(R.id.switch_inquiry);
         labeledSwitch.setOnToggledListener(new OnToggledListener() {
-            @Override
             public void onSwitched(LabeledSwitch labeledSwitch, boolean isOn) {
                 // Implement your switching logic here
                 RecyclerAdapter newnew_adapter = new RecyclerAdapter();
@@ -110,7 +109,7 @@ public class InquiryFragment extends Fragment implements RecyclerAdapter.MyRecyc
                 else
                     getSellData(newnew_adapter);
             }
-        });
+        });*/
 
 
 
