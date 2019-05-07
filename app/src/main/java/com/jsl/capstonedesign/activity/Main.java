@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.jsl.capstonedesign.activity;
 
 import android.os.Bundle;
@@ -26,30 +25,6 @@ import com.jsl.capstonedesign.activity.FragmentView.InquiryFragment;
 import com.jsl.capstonedesign.activity.FragmentView.SearchResultFragment;
 import com.jsl.capstonedesign.activity.FragmentView.Upload_2Fragment;
 import com.jsl.capstonedesign.activity.FragmentView.UserFragment;
-=======
-        package com.jsl.capstonedesign.activity;
-
-        import android.os.Bundle;
-        import android.support.annotation.NonNull;
-        import android.support.design.widget.BottomNavigationView;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentTransaction;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.MenuItem;
-
-        import com.google.android.gms.auth.api.Auth;
-        import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-        import com.google.android.gms.common.ConnectionResult;
-        import com.google.android.gms.common.api.GoogleApiClient;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.jsl.capstonedesign.R;
-        import com.jsl.capstonedesign.activity.FragmentView.HomeFragment;
-        import com.jsl.capstonedesign.activity.FragmentView.InquiryFragment;
-        import com.jsl.capstonedesign.activity.FragmentView.SearchResultFragment;
-        import com.jsl.capstonedesign.activity.FragmentView.Upload_2Fragment;
-        import com.jsl.capstonedesign.activity.FragmentView.UserFragment;
->>>>>>> 061fcd9259bccac8817043f218f8fc327cbeeb83
 
 public class Main extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
     //나중에 삭제할것  **수정
