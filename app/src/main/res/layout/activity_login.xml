@@ -4,55 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Login" >
+    android:background="@drawable/loginbackground1"
+    tools:context=".activity.Login"
+    android:id="@+id/login_back1">
 
-
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@drawable/loginbackground2"
+        android:id="@+id/login_back2">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="225dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
             android:orientation="vertical"
-            android:layout_marginTop="70dp">
+            android:id="@+id/login_upperlayout"
+            >
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_gravity="center"
-                android:layout_margin="30dp"
-                android:src="@drawable/logo" />
-        </LinearLayout>
+                android:layout_marginRight="15dp"
 
+                android:id="@+id/login_logo1"/>
 
-
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-
-            <Button
-                android:layout_width="280dp"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:background="@color/colorPrimary"
-                android:text="G+   구글로 로그인"
-                android:id="@+id/btn_login"
-                android:layout_marginTop="100dp"
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="125dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:id="@+id/login_logo2"
+                 />
+
+
+            <FrameLayout
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:background="@drawable/loginradiusbutton"
+                android:layout_gravity="center"
+                android:layout_marginTop="90dp">
+
+
+                <ImageButton
+                android:layout_width="200dp"
+                android:layout_height="28dp"
+                android:background="@drawable/logingooglelogin"
+                android:id="@+id/btn_login"
+                android:layout_gravity="center"
+                    android:scaleType="fitCenter"
                 />
+            </FrameLayout>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="125dp"
+                android:layout_height="26dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/login_or"/>
 
 
+            <FrameLayout
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:background="@drawable/signupradiusbutton"
+                android:layout_gravity="center">
 
+                <android.support.v7.widget.AppCompatImageView
+                android:layout_width="125dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                    android:id="@+id/login_signup" />
+            </FrameLayout>
         </LinearLayout>
 
-    </LinearLayout>
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/login_bottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_upperlayout"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+
+
 </RelativeLayout>
 
 
