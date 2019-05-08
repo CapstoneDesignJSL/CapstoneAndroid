@@ -2,16 +2,14 @@ package com.jsl.capstonedesign.activity.FragmentView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.angads25.toggle.LabeledSwitch;
-import com.github.angads25.toggle.interfaces.OnToggledListener;
 import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.Picture;
 import com.jsl.capstonedesign.activity.recyclerview.Data;

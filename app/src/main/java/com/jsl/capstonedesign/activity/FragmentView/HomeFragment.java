@@ -1,103 +1,103 @@
 package com.jsl.capstonedesign.activity.FragmentView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
+import me.relex.circleindicator.CircleIndicator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.jsl.capstonedesign.R;
-import com.jsl.capstonedesign.activity.Picture;
-import com.jsl.capstonedesign.activity.recyclerview.Data;
-import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecyclerViewClickListener {
+public class HomeFragment extends Fragment  {
     View v;
-    private RecyclerAdapter adapter;
 
-    public void onItemClicked(int position, Data data) {
-        //Toast.makeText(getActivity().getApplicationContext(), position + " 번 아이템 클릭됨", Toast.LENGTH_SHORT).show();
+    private Button search;
+    private FragmentPagerAdapter adapterViewPager;
 
-        Intent intent = new Intent(v.getContext() , Picture.class);
-
-        intent.putExtra("title",data.getTitle()); /*송신*/
-        intent.putExtra("resid",data.getResId());
-        intent.putExtra("content",data.getContent());
-
-        v.getContext().startActivity(intent);
-    }
-///dfdf
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
+        final Fragment searchFragment = new SearchResultFragment();
         v = inflater.inflate(R.layout.fragment_home, container, false);
-        RecyclerView recyclerView = v.findViewById(R.id.recyclerView);
 
 
-        StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2,1);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        ViewPager vpPager = (ViewPager)v.findViewById(R.id.home_vpPager);
+        adapterViewPager = new MyPagerAdapter(getActivity().getSupportFragmentManager());
 
-        adapter = new RecyclerAdapter();
+        vpPager.setAdapter(adapterViewPager);
 
-        adapter.setOnClickListener(HomeFragment.this);
+        CircleIndicator indicator = (CircleIndicator) v.findViewById(R.id.home_indicator);
+        indicator.setViewPager(vpPager);
 
-        recyclerView.setAdapter(adapter);
-        getData();
+        search = (Button)v.findViewById(R.id.home_search_button);
+
+        search.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View v)
+            {
+                openFragment(searchFragment);
+            }
+
+        });
+
+
 
         return v;
     }
 
+    public static class MyPagerAdapter extends FragmentPagerAdapter {
+        private static int NUM_ITEMS = 6;
 
-
-    private void getData() {
-        // 임의의 데이터입니다.
-        List<String> listTitle = Arrays.asList("이스라엘", "폴란드", "러시아", "러시아2","러시아3","러시아4","러시아5","러시아6","러시아7");
-        List<String> listContent = Arrays.asList(
-                "이스라엘 설명 텍스트",
-                "폴란드 설명 텍스트",
-                "러시아1 설명 텍스트",
-                "러시아2 설명 텍스트",
-                "러시아3 설명 텍스트",
-                "러시아4 설명 텍스트",
-                "러시아5 설명 텍스트",
-                "러시아6 설명 텍스트",
-                "러시아7 설명 텍스트"
-        );
-        List<Integer> listResId = Arrays.asList(
-                R.drawable.womenexample,
-                R.drawable.poland,
-                R.drawable.manexample,
-                R.drawable.russia,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2
-        );
-        for (int i = 0; i < listTitle.size(); i++) {
-            // 각 List의 값들을 data 객체에 set 해줍니다.
-            Data data = new Data();
-            data.setTitle(listTitle.get(i));
-            data.setContent(listContent.get(i));
-            data.setResId(listResId.get(i));
-
-            // 각 값이 들어간 data를 adapter에 추가합니다.
-            adapter.addItem(data);
+        public MyPagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
         }
 
-        // adapter의 값이 변경되었다는 것을 알려줍니다.
-        adapter.notifyDataSetChanged();
+        // Returns total number of pages
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
+
+        // Returns the fragment to display for that page
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return HomeTotalFragment.newInstance(0, "total");
+                case 1:
+                    return HomeTotalFragment.newInstance(1, "figure");
+                case 2:
+                    return HomeTotalFragment.newInstance(2, "attraction");
+                case 3:
+                    return HomeTotalFragment.newInstance(3, "clothes");
+                case 4:
+                    return HomeTotalFragment.newInstance(4, "building");
+                case 5:
+                    return HomeTotalFragment.newInstance(5, "etc");
+                default:
+                    return null;
+            }
+        }
     }
+
+    private void openFragment(final Fragment fragment)   {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.body_fragment, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }

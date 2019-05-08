@@ -2,9 +2,9 @@ package com.jsl.capstonedesign.activity.FragmentView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +23,6 @@ import com.jsl.capstonedesign.activity.Charge;
 import com.jsl.capstonedesign.activity.Login;
 import com.jsl.capstonedesign.activity.MainActivity;
 import com.jsl.capstonedesign.activity.Order_inquiry;
-import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 
 public class UserFragment extends Fragment {
 

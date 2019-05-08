@@ -2,14 +2,18 @@ package com.jsl.capstonedesign.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -61,6 +65,18 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ImageView loginlogo1 = (ImageView)findViewById(R.id.login_logo1);
+        ImageView loginlogo2 = (ImageView)findViewById(R.id.login_logo2);
+        ImageView login_or = (ImageView)findViewById(R.id.login_or);
+        ImageView login_signup = (ImageView)findViewById(R.id.login_signup);
+        ImageView login_bottom = (ImageView)findViewById(R.id.login_bottom);
+
+        Glide.with(this).load(R.drawable.loginlogo1).into(loginlogo1);
+        Glide.with(this).load(R.drawable.loginlogo2).into(loginlogo2);
+        Glide.with(this).load(R.drawable.or).into(login_or);
+        Glide.with(this).load(R.drawable.loginsignup).into(login_signup);
+        Glide.with(this).load(R.drawable.loginbottom).into(login_bottom);
+
         Log.e(TAG, "onCreate in Login");
         mAuth = FirebaseAuth.getInstance();
 
@@ -82,7 +98,7 @@ public class Login extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        Button btn_login =(Button) findViewById(R.id.btn_login);
+        ImageButton btn_login =(ImageButton) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new Button.OnClickListener()
                                      {
                                          @Override
@@ -90,14 +106,13 @@ public class Login extends AppCompatActivity {
                                          {
 
 
-                                             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                                             startActivityForResult(signInIntent, RC_SIGN_IN);
+//                                             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+//                                             startActivityForResult(signInIntent, RC_SIGN_IN);
 //                                             finish();
 
-////                                              test용 코드
-//                                             Intent intent = new Intent(getApplicationContext(), Main.class);
-//                                             startActivity(intent);
-//                                             finish();
+                                             Intent intent = new Intent(getApplicationContext(), Main.class);
+                                             startActivity(intent);
+                                             //finish();
 
 
                                          }
@@ -113,11 +128,11 @@ public class Login extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-                if(currentUser!=null) {
-                    Intent intent = new Intent(getApplicationContext(), Main.class);
-                    startActivity(intent);
-                    finish();
-                }
+        if(currentUser!=null) {
+            Intent intent = new Intent(getApplicationContext(), Main.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 
@@ -132,19 +147,19 @@ public class Login extends AppCompatActivity {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
-                 account = result.getSignInAccount();
-                 email = account.getEmail();
+                account = result.getSignInAccount();
+                email = account.getEmail();
                 Log.e(TAG, "이름 =" + account.getDisplayName());
                 Log.e(TAG, "이메일=" + email);
 //                Log.e(TAG, "getId()=" + account.getId());
 //                Log.e(TAG, "getAccount()=" + account.getAccount());
 //                Log.e(TAG, "getIdToken()=" + account.getIdToken());
-                firebaseAuthWithGoogle(account);
+                //firebaseAuthWithGoogle(account);
 
 //                String wallet=data.getStringExtra("result");
-                    Intent intent = new Intent(Login.this, Main.class);
-                    startActivity(intent);
-                    finish();
+                Intent intent = new Intent(getApplicationContext(), Main.class);
+                startActivity(intent);
+                finish();
 
 
 
@@ -156,7 +171,7 @@ public class Login extends AppCompatActivity {
 
         }
     }
-
+/*
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -167,24 +182,21 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-//                            Intent intent = new Intent(getApplicationContext(), Main.class);
-//                            startActivity(intent);
-//                            finish();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
                             Log.d(TAG, "signInWithCredential:success");
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(Login.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+
                         }
 
                         // ...
                     }
                 });
-
-
     }
-
+*/
 
 
 

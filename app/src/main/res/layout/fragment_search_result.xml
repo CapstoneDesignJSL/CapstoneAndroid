@@ -1,79 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:id="@+id/txt_search"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:text=""
-        android:textColor="@color/colorPrimary"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_lowerlayout"
+        android:background="@drawable/homebg"
+        android:id="@+id/home_upperlayout">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/searchresult_backbutton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="40dp"
+                />
+
+            <FrameLayout
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="25dp">
+
+                <Button
+                    android:id="@+id/searchresult_exitbutton2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop = "8dp"
+                    android:layout_marginRight ="8dp"
+                    android:background="@drawable/searchresultexit2"
+                    android:layout_gravity= "end"/>
+
+                <Button
+                    android:id="@+id/searchresult_exitbutton1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop = "8dp"
+                    android:layout_marginRight ="8dp"
+                    android:background="@drawable/searchresultexit1"
+                    android:layout_gravity= "end"/>
+
+
+
+                <EditText
+                    android:id="@+id/searchresult_search"
+                    android:layout_width="240dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/homesearchradiusbutton"
+                    android:paddingLeft="16dp"
+                    android:text="이전 검색어"
+                    android:textColor="@color/colorGrey"
+                    android:textSize="16dp" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/searchresult_cartbutton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/upper_layout"
+        android:id="@+id/home_lowerlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf = "@+id/txt_search"
+        android:layout_height="0dp"
+        android:layout_weight="12"
+        android:orientation="vertical"
         >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="개의 검색결과"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp">
 
-
-
-        <EditText
-            android:layout_marginTop="3dp"
-            android:layout_width="0dp"
-            android:layout_weight = "10"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:background="@color/colorPrimaryDark"
-            android:inputType="text"
-            android:textColor="@color/colorAccent"
-
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="match_parent"
+            android:layout_height="479dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="#FFFFFF"
+            app:layout_constraintVertical_bias="0.513"
+            tools:layout_editor_absoluteX="0dp"
             />
 
-        <ImageView
-            android:id="@+id/ic_search"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_margin="0dp"
-            android:layout_marginLeft="300dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="2"
-            android:src="@drawable/ic_search_black_24dp"
-
-            />
 
     </LinearLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="match_parent"
-        android:layout_height="479dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginBottom="14dp"
-        android:background="#FFFFFF"
-        app:layout_constraintVertical_bias="0.513"
-        tools:layout_editor_absoluteX="0dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upper_layout"/>
-
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
