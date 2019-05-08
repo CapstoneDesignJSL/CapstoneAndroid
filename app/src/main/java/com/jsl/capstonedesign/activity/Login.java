@@ -2,11 +2,11 @@ package com.jsl.capstonedesign.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -55,6 +55,7 @@ public class Login extends AppCompatActivity {
         Glide.with(this).load(R.drawable.loginbottom).into(login_bottom);
 
         mAuth = FirebaseAuth.getInstance();
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))

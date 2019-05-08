@@ -2,18 +2,16 @@ package com.jsl.capstonedesign.activity.FragmentView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.Picture;
 import com.jsl.capstonedesign.activity.recyclerview.Data;
@@ -22,71 +20,68 @@ import com.jsl.capstonedesign.activity.recyclerview.RecyclerAdapter;
 import java.util.Arrays;
 import java.util.List;
 
-public class SearchResultFragment extends Fragment  implements RecyclerAdapter.MyRecyclerViewClickListener {
 
-    View v;
+public class HomeTotalFragment extends Fragment implements RecyclerAdapter.MyRecyclerViewClickListener{
+    // Store instance variables
+    private String title;
+    private int page;
     private RecyclerAdapter adapter;
-    private RecyclerView recyclerView;
-    private int resultNumber = 0;
+    View view;
+    public void onItemClicked(int position, Data data) {
+        //Toast.makeText(getActivity().getApplicationContext(), position + " 번 아이템 클릭됨", Toast.LENGTH_SHORT).show();
 
-    @Nullable
+        Intent intent = new Intent(view.getContext() , Picture.class);
+
+        intent.putExtra("title",data.getTitle()); /*송신*/
+        intent.putExtra("resid",data.getResId());
+        intent.putExtra("content",data.getContent());
+
+        view.getContext().startActivity(intent);
+
+
+    }
+
+    // newInstance constructor for creating fragment with arguments
+    public static HomeTotalFragment newInstance(int page, String title) {
+        HomeTotalFragment fragment = new HomeTotalFragment();
+        Bundle args = new Bundle();
+        args.putInt("someInt", page);
+        args.putString("someTitle", title);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    // Store instance variables based on arguments passed
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             @Nullable ViewGroup container,
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        page = getArguments().getInt("someInt", 0);
+        title = getArguments().getString("someTitle");
+    }
+
+    // Inflate the view for the fragment based on layout XML
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
-
-        v = inflater.inflate(R.layout.fragment_search_result, container, false);
-
-        ImageView backbutton = (ImageView)v.findViewById(R.id.searchresult_backbutton);
-        Button exitbutton1 = (Button)v.findViewById(R.id.searchresult_exitbutton1);
-        Button exitbutton2 = (Button)v.findViewById(R.id.searchresult_exitbutton2);
-        ImageView cartbutton = (ImageView)v.findViewById(R.id.searchresult_cartbutton);
-        final EditText et = (EditText)v.findViewById(R.id.searchresult_search);
-
-        Glide.with(getActivity()).load(R.drawable.searchresultbackbutton).into(backbutton);
-        Glide.with(getActivity()).load(R.drawable.searchresultcartbutton).into(cartbutton);
-
-
-
-        exitbutton1.setOnClickListener(new Button.OnClickListener(){
-
-            @Override
-            public void onClick(View v)
-            {
-                et.setText(null);
-            }
-
-        });
-        recyclerView = v.findViewById(R.id.recyclerView2);
+        View view = inflater.inflate(R.layout.fragment_home_vp1, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2,1);
         recyclerView.setLayoutManager(gridLayoutManager);
 
         adapter = new RecyclerAdapter();
 
-        adapter.setOnClickListener(SearchResultFragment.this);
+        adapter.setOnClickListener(HomeTotalFragment.this);
+
         recyclerView.setAdapter(adapter);
         getData();
 
-        return v;
+        TextView tvLabel = (TextView) view.findViewById(R.id.home_indicator_text);
+        tvLabel.setText(title);
+
+        return view;
     }
-
-
-    public void onItemClicked(int position, Data data) {
-        //Toast.makeText(getActivity().getApplicationContext(), position + " 번 아이템 클릭됨", Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(v.getContext() , Picture.class);
-
-        intent.putExtra("title",data.getTitle()); /*송신*/
-        intent.putExtra("resid",data.getResId());
-        intent.putExtra("content",data.getContent());
-
-        v.getContext().startActivity(intent);
-    }
-
 
     private void getData() {
         // 임의의 데이터입니다.
@@ -103,10 +98,10 @@ public class SearchResultFragment extends Fragment  implements RecyclerAdapter.M
                 "러시아7 설명 텍스트"
         );
         List<Integer> listResId = Arrays.asList(
-                R.drawable.israel,
+                R.drawable.womenexample,
                 R.drawable.poland,
+                R.drawable.manexample,
                 R.drawable.russia,
-                R.drawable.russia_2,
                 R.drawable.russia_2,
                 R.drawable.russia_2,
                 R.drawable.russia_2,
@@ -129,4 +124,3 @@ public class SearchResultFragment extends Fragment  implements RecyclerAdapter.M
         adapter.notifyDataSetChanged();
     }
 }
-
