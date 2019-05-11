@@ -21,9 +21,9 @@ public class Picture extends AppCompatActivity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_picture);
 
-        TextView titleTextView = findViewById(R.id.title_picture);
-        TextView priceTextView = findViewById(R.id.price_picture);
-        TextView contentTextView = findViewById(R.id.content_picture);
+        TextView titleTextView = findViewById(R.id.picture_pictureName);
+        TextView priceTextView = findViewById(R.id.picture_picturePrIce);
+        TextView contentTextView = findViewById(R.id.picture_pictureDescription);
 
         Intent intent = getIntent();
         String bringTitle = intent.getStringExtra("title");
@@ -44,18 +44,6 @@ public class Picture extends AppCompatActivity {
                                             }
                                         }
         );
-
-        TextView text_logo =(TextView) findViewById(R.id.txt_picture);
-        text_logo.setOnClickListener(new Button.OnClickListener()
-                                   {
-                                       @Override
-                                       public void onClick(View v)
-                                       {
-                                           Intent intent = new Intent(getApplicationContext(), Main.class);
-                                           startActivity(intent);
-                                       }
-                                   }
-        );
     }
     public void Dialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -70,9 +58,9 @@ public class Picture extends AppCompatActivity {
         builder.setNegativeButton("예",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Dialog2();
-                        //Intent intent = new Intent(getApplicationContext(), PurchaseSheet_1.class);
-                        //startActivity(intent);
+                        //Dialog2();
+                        Intent intent = new Intent(getApplicationContext(), PurchaseSheet_2.class);
+                        startActivity(intent);
                         //Toast.makeText(getApplicationContext(),"좌측버튼 클릭됨",Toast.LENGTH_LONG).show();
                     }
                 });

@@ -53,7 +53,9 @@ public class HomeTotalFragment extends Fragment implements RecyclerAdapter.MyRec
     // Store instance variables based on arguments passed
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         page = getArguments().getInt("someInt", 0);
         title = getArguments().getString("someTitle");
     }
@@ -63,7 +65,7 @@ public class HomeTotalFragment extends Fragment implements RecyclerAdapter.MyRec
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home_vp1, container, false);
+        view = inflater.inflate(R.layout.fragment_home_vp1, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2,1);
