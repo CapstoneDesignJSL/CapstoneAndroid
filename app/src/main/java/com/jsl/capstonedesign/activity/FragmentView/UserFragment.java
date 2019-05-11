@@ -70,7 +70,7 @@ public class UserFragment extends Fragment {
             }
         });
 
-        Button btn_order =(Button) v.findViewById(R.id.btn_order);
+        Button btn_order =(Button) v.findViewById(R.id.user_inqbg);
         btn_order.setOnClickListener(new Button.OnClickListener()
                                      {
                                          @Override

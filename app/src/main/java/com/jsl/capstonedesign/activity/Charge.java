@@ -15,9 +15,7 @@ public class Charge extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_charge);
 
-        ImageView coin = (ImageView) findViewById(R.id.gif_image);
-        GlideDrawableImageViewTarget gifImage = new GlideDrawableImageViewTarget(coin);
-        Glide.with(this).load(R.drawable.coin).into(gifImage);
+        //ImageView coin = (ImageView) findViewById(R.id.);
     }
 }
  //test
