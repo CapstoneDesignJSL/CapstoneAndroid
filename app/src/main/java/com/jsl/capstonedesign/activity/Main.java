@@ -1,5 +1,6 @@
 package com.jsl.capstonedesign.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -89,8 +90,7 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
                                 openFragment(homeFragment);
                                 return true;
 
-                            case R.id.menuitem_bottombar_search:
-                                openFragment(searchFragment);
+                            case R.id.menuitem_bottombar_category:
                                 return true;
 
                             case R.id.menuitem_bottombar_inquire:
@@ -98,9 +98,11 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
 
                                 return true;
                             case R.id.menuitem_bottombar_uproad:
-                                openFragment(uploadFragment);
-
+                                //openFragment(uploadFragment);
+                                Intent intent = new Intent(getApplicationContext(),Upload.class);
+                                startActivity(intent);
                                 return true;
+
                             case R.id.menuitem_bottombar_user:
                                 openFragment(userFragment);
                                 return true;

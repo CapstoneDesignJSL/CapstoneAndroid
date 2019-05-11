@@ -33,7 +33,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
-
         <activity android:name=".activity.Charge" />
         <activity android:name=".activity.Order_inquiry"/>
         <activity android:name=".activity.Shopping_cart" />
@@ -52,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
