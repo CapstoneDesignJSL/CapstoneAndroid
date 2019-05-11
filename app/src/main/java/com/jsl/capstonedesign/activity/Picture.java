@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
+import com.squareup.picasso.Picasso;
 
 public class Picture extends AppCompatActivity {
 
@@ -24,15 +26,17 @@ public class Picture extends AppCompatActivity {
         TextView titleTextView = findViewById(R.id.picture_pictureName);
         TextView priceTextView = findViewById(R.id.picture_picturePrIce);
         TextView contentTextView = findViewById(R.id.picture_pictureDescription);
-
+        ImageView imageView = findViewById(R.id.picture_image);
         Intent intent = getIntent();
         String bringTitle = intent.getStringExtra("title");
         String bringContent = intent.getStringExtra("content");
-        int bringPrice = intent.getIntExtra("price",-1);
+        Double bringPrice = intent.getDoubleExtra("price",-1);
 
-        titleTextView.setText("그림 이름 : " + bringTitle);
-        titleTextView.setText("그림 가격 : " + String.valueOf(bringPrice));
-        titleTextView.setText(bringContent);
+        Picasso.get().load(intent.getStringExtra("url")).into(imageView);
+
+        titleTextView.setText(bringTitle);
+        priceTextView.setText( String.valueOf(bringPrice)+" eth");
+        //contentTextView.setText(bringContent);
 
         Button btn_buy =(Button) findViewById(R.id.btn_buy);
         btn_buy.setOnClickListener(new Button.OnClickListener()

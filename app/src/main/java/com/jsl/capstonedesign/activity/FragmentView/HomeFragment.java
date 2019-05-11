@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecycler
     List<String> listTitle =  new ArrayList<String>();
     List<String> listContent= new ArrayList<String>();
     List<String> listResId = new ArrayList<String>();
+    List<Double> listPrice= new ArrayList<Double>();
 
     final private String TAG = getClass().getSimpleName();
 
@@ -125,7 +126,8 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecycler
         intent.putExtra("title", data.getTitle()); /*송신*/
         intent.putExtra("resid", data.getResId());
         intent.putExtra("content", data.getContent());
-
+        intent.putExtra("url",data.getResId());
+        intent.putExtra("price", data.getPrice());
         v.getContext().startActivity(intent);
     }
 
@@ -154,16 +156,17 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecycler
                         listContent.clear();
                         listResId.clear();
                         listTitle.clear();
+                        listPrice.clear();
 
                         JSONArray jsonArray = new JSONArray(str);
+                        Log.e("testtest",str);
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jObject = jsonArray.getJSONObject(i);
-                            Log.e("testtest",jObject.getString("picture_name"));
 
                             listTitle.add(jObject.getString("picture_name"));
                             listContent.add(jObject.getString("picture_name") + "입니다");
-
+                            listPrice.add(jObject.getDouble("price"));
                             String ur = apiService.API_URL+jObject.getString("url");
                             listResId.add(ur);
 
@@ -175,7 +178,7 @@ public class HomeFragment extends Fragment implements RecyclerAdapter.MyRecycler
                             data.setTitle(listTitle.get(i));
                             data.setContent(listContent.get(i));
                             data.setResId(listResId.get(i));
-
+                            data.setPrice(listPrice.get(i));
                             // 각 값이 들어간 data를 adapter에 추가합니다.
                             adapter.addItem(data);
                         }
