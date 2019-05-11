@@ -6,21 +6,20 @@
         android:icon="@drawable/ic_baseline_home_24px"
         android:title="HOME"
         app:showAsAction="ifRoom"/>
-
     <item
-        android:id="@+id/menuitem_bottombar_search"
-        android:title="SEARCH"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:id="@+id/menuitem_bottombar_category"
+        android:title="CATEGORY"
+        android:icon="@drawable/category"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menuitem_bottombar_uproad"
+        android:icon="@drawable/upload"
+        android:title="UPLOAD"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_inquire"
         android:icon="@drawable/ic_menu_black_24dp"
         android:title="INQUIRE"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/menuitem_bottombar_uproad"
-        android:icon="@drawable/ic_menu_black_24dp"
-        android:title="UPLOAD"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_user"

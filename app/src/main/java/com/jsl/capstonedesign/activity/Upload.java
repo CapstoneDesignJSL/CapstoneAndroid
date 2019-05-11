@@ -1,43 +1,50 @@
 package com.jsl.capstonedesign.activity;
 
-import android.content.Intent;
+import android.app.Activity;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.Display;
 import android.view.View;
-import android.widget.Button;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
 
 import com.jsl.capstonedesign.R;
-import com.jsl.capstonedesign.activity.FragmentView.Upload_2Fragment;
 
-public class Upload extends AppCompatActivity {
+public class Upload extends Activity {
 
     @Override
-
-//    수정 창으로 넘어감
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
-        Button btn_revise =(Button) findViewById(R.id.btn_revise);
-        btn_revise.setOnClickListener(new Button.OnClickListener()
-                                     {
-                                         @Override
-                                         public void onClick(View v)
-                                         {
-                                             //서버에 업로드 요청
+        //화면크기 얻기
+        Display display = ((WindowManager)getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+        int displayWidth = display.getWidth();
 
+        GridView gridView = (GridView) findViewById(R.id.gridview1);
+        //gridView.setAdapter(new ImageAdapter(this));
+        //ImageAdapter adapter = new ImageAdapter(this);
+        ImageAdapter adapter = new ImageAdapter(this,displayWidth); //가로크기의 정보를 같이 넘긴다.
+        gridView.setAdapter(adapter);
 
-                                             if(true){ //업로드요청에 대해 받은 응답으로 트루값들어오면 진행
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                                                 Intent intent = new Intent(getApplicationContext(), Upload_2Fragment.class);
-                                                 startActivity(intent);
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Toast.makeText(getApplicationContext(), position+"클릭함",
+                        Toast.LENGTH_SHORT).show();
 
-                                             }else {
-                                                    //업로드에 실패하였습니다.
-                                             }
-                                         }
-                                     }
-        );
+            }
+        });
+    }
 
+    public void btn_str_cancel(View view) {
+        Toast.makeText(this,"취소",Toast.LENGTH_LONG).show();
+    }
+
+    public void btn_str_ok(View view) {
+        Toast.makeText(this,"확인",Toast.LENGTH_LONG).show();
     }
 }
