@@ -102,24 +102,24 @@ public class SearchResultFragment extends Fragment  implements RecyclerAdapter.M
                 "러시아6 설명 텍스트",
                 "러시아7 설명 텍스트"
         );
-        List<Integer> listResId = Arrays.asList(
-                R.drawable.israel,
-                R.drawable.poland,
-                R.drawable.russia,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2,
-                R.drawable.russia_2
-        );
+//        List<Integer> listResId = Arrays.asList(
+//                R.drawable.israel,
+//                R.drawable.poland,
+//                R.drawable.russia,
+//                R.drawable.russia_2,
+//                R.drawable.russia_2,
+//                R.drawable.russia_2,
+//                R.drawable.russia_2,
+//                R.drawable.russia_2,
+//                R.drawable.russia_2,
+//                R.drawable.russia_2
+//        );
         for (int i = 0; i < listTitle.size(); i++) {
             // 각 List의 값들을 data 객체에 set 해줍니다.
             Data data = new Data();
             data.setTitle(listTitle.get(i));
             data.setContent(listContent.get(i));
-            data.setResId(listResId.get(i));
+           // data.setResId(listResId.get(i));
 
             // 각 값이 들어간 data를 adapter에 추가합니다.
             adapter.addItem(data);

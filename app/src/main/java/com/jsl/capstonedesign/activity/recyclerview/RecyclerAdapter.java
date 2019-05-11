@@ -2,6 +2,9 @@ package com.jsl.capstonedesign.activity.recyclerview;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsl.capstonedesign.R;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
@@ -80,6 +90,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         Data currentData;
 
+
         ItemViewHolder(View itemView) {
             super(itemView);
 
@@ -89,16 +100,36 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             textView2 = itemView.findViewById(R.id.price_item);
             imageView = itemView.findViewById(R.id.imageView_item);
 
+
             currentData.setContent("default");
-            currentData.setResId(-1);
+            currentData.setResId("1");
             currentData.setTitle("default");
         }
 
         void onBind(Data data) {
             textView1.setText(data.getTitle());
             textView2.setText(data.getContent());
-            imageView.setImageResource(data.getResId());
+            String ur = data.getResId();
+            CropSquareTransformation tf = new CropSquareTransformation();
+//            Bitmap bit = Picasso.get().load(;
+             Picasso.get().load(ur).transform(tf).into(imageView);
         }
 
     }
+
+    public class CropSquareTransformation implements Transformation {
+        @Override public Bitmap transform(Bitmap source) {
+            int size = Math.min(source.getWidth(), source.getHeight());
+            int x = (source.getWidth() - size) / 10;
+            int y = (source.getHeight() - size) / 10;
+            Bitmap result = Bitmap.createBitmap(source, x, y, size, size);
+            if (result != source) {
+                source.recycle();
+            }
+            return result;
+        }
+
+        @Override public String key() { return "square()"; }
+    }
+
 }

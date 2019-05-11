@@ -25,18 +25,18 @@ public class InquiryFragment extends Fragment implements RecyclerAdapter.MyRecyc
     //임시 데이터
     List<String> listTitle = Arrays.asList("이스라엘", "폴란드", "러시아", "러시아2","러시아3","러시아4","러시아5","러시아6","러시아7");
 
-    List<Integer> listResId = Arrays.asList(
-            R.drawable.israel,
-            R.drawable.poland,
-            R.drawable.russia,
-            R.drawable.russia_2,
-            R.drawable.russia_2,
-            R.drawable.russia_2,
-            R.drawable.russia_2,
-            R.drawable.russia_2,
-            R.drawable.russia_2,
-            R.drawable.russia_2
-    );
+//    List<Integer> listResId = Arrays.asList(
+//            R.drawable.israel,
+//            R.drawable.poland,
+//            R.drawable.russia,
+//            R.drawable.russia_2,
+//            R.drawable.russia_2,
+//            R.drawable.russia_2,
+//            R.drawable.russia_2,
+//            R.drawable.russia_2,
+//            R.drawable.russia_2,
+//            R.drawable.russia_2
+//    );
 
     List<String> listContentBuy = Arrays.asList(
             "이스라엘 설명 구매한것 ",
@@ -123,7 +123,7 @@ public class InquiryFragment extends Fragment implements RecyclerAdapter.MyRecyc
             Data data = new Data();
             data.setTitle(listTitle.get(i));
             data.setContent(listContentSell.get(i));
-            data.setResId(listResId.get(i));
+//            data.setResId(listResId.get(i));
 
             // 각 값이 들어간 data를 adapter에 추가합니다.
             new_adapter.addItem(data);
@@ -141,7 +141,7 @@ public class InquiryFragment extends Fragment implements RecyclerAdapter.MyRecyc
             Data data = new Data();
             data.setTitle(listTitle.get(i));
             data.setContent(listContentBuy.get(i));
-            data.setResId(listResId.get(i));
+//            data.setResId(listResId.get(i));
 
             // 각 값이 들어간 data를 adapter에 추가합니다.
             new_adapter.addItem(data);

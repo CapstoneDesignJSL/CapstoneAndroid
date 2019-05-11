@@ -3,6 +3,8 @@ package com.jsl.capstonedesign.activity.Retrofit;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
@@ -22,8 +24,8 @@ public interface ApiService {
     @POST("eth/make")
     Call<ResponseBody>postComment();
 
-    @GET("picutre/?format=json")
-    Call<ArrayList<JsonObject>>getList();
+    @GET("list")
+    Call<ResponseBody>getPictureList();
 
     
 
