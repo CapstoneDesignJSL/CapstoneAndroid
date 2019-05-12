@@ -40,6 +40,7 @@
         <activity android:name=".activity.PurchaseSheet_1" />
         <!--<activity android:name=".activity.fragment.UploadFragment" />-->
         <activity android:name=".activity.Upload"/>
+        <activity android:name=".activity.UploadPopup"/>
         <activity android:name=".activity.Picture" />
         <activity android:name=".activity.Main"
             android:windowSoftInputMode="adjustPan"/>

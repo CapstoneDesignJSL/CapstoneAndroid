@@ -1,36 +1,27 @@
 package com.jsl.capstonedesign.activity.FragmentView;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
+
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.jsl.capstonedesign.R;
-import com.jsl.capstonedesign.activity.Upload;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Upload_2Fragment extends Fragment {
@@ -43,86 +34,13 @@ public class Upload_2Fragment extends Fragment {
                              @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
-
-
         v = inflater.inflate(R.layout.fragment_upload_2, container, false);
-
-
-
-        Button btn_upload_register =(Button) v.findViewById(R.id.btn_upload_register);
-        btn_upload_register.setOnClickListener(new Button.OnClickListener()
-                                               {
-                                                   @Override
-                                                   public void onClick(View v)
-                                                   {
-                                                       Intent intent = new Intent(getContext().getApplicationContext(), Upload.class);
-                                                       startActivity(intent);
-                                                   }
-                                               }
-        );
-
-        requirePermission();
-
-        ImageView camera = (ImageView) v.findViewById(R.id.camera_button);
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                boolean camera = ContextCompat.checkSelfPermission
-                        (view.getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
-
-
-                boolean write = ContextCompat.checkSelfPermission
-                        (view.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-
-                if (camera && write) {
-                    //사진찍은 인텐트 코드 넣기
-
-                    takePicture();
-                } else {
-                    Toast.makeText(getContext(), "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        ImageView gallery = (ImageView) v.findViewById(R.id.gallery_button);
-        gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                boolean gallery = ContextCompat.checkSelfPermission
-                        (view.getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
-
-
-                boolean write = ContextCompat.checkSelfPermission
-                        (view.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-
-                if (gallery && write) {
-                    //사진찍은 인텐트 코드 넣기
-
-                    getPicture();
-                } else {
-                    Toast.makeText(getContext(), "카메라 권한 및 쓰기 권한을 주지 않았습니다.", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-
         return v;
     }
 
-
     private String mCurrentPhotoPath;
 
-
-
-    void requirePermission() {
+/*    void requirePermission() {
 
         String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         ArrayList<String> listPermissionsNeeded = new ArrayList<>();
@@ -163,7 +81,7 @@ public class Upload_2Fragment extends Fragment {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,1);
-    }
+    }*/
 
     private File createImageFile() throws IOException {
 
@@ -183,9 +101,9 @@ public class Upload_2Fragment extends Fragment {
         return image;
     }
 
-    @Override
+       @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        ImageView imageView = (ImageView)v.findViewById(R.id.imageView);
+        ImageView imageView = v.findViewById(R.id.imageView);
         if(requestCode == 10){
 
             imageView.setImageBitmap(BitmapFactory.decodeFile(mCurrentPhotoPath));

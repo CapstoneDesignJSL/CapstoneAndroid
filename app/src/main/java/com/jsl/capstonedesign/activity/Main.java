@@ -1,5 +1,6 @@
 package com.jsl.capstonedesign.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,8 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.FragmentView.HomeFragment;
 import com.jsl.capstonedesign.activity.FragmentView.InquiryFragment;
-import com.jsl.capstonedesign.activity.FragmentView.SearchResultFragment;
-import com.jsl.capstonedesign.activity.FragmentView.Upload_2Fragment;
 import com.jsl.capstonedesign.activity.FragmentView.UserFragment;
 
 public class Main extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
@@ -36,9 +35,9 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
         setContentView(R.layout.activity_main);
 
         final Fragment homeFragment = new HomeFragment();
-        final Fragment searchFragment = new SearchResultFragment();
+//      final Fragment searchFragment = new SearchResultFragment();
         final Fragment inquiryFragment = new InquiryFragment();
-        final Fragment uploadFragment = new Upload_2Fragment();
+//      final Fragment uploadFragment = new Upload_2Fragment();
         final Fragment userFragment = new UserFragment();
 
         Toolbar tb = findViewById(R.id.toolbar);
@@ -93,12 +92,14 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
 
                             case R.id.menuitem_bottombar_inquire:
                                 openFragment(inquiryFragment);
-
                                 return true;
+
                             case R.id.menuitem_bottombar_uproad:
-                                openFragment(uploadFragment);
-
+//                                openFragment(uploadFragment);
+                                Intent intent = new Intent(getApplicationContext(), Upload.class);
+                                startActivity(intent);
                                 return true;
+
                             case R.id.menuitem_bottombar_user:
                                 openFragment(userFragment);
                                 return true;
