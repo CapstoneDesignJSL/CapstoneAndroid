@@ -49,14 +49,6 @@ public class Upload extends Activity {
                 Toast.makeText(getApplicationContext(),"취소",Toast.LENGTH_SHORT).show();
             }
         });
-
-        TextView tx2 = findViewById(R.id.btn_ok);
-        tx2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"확인",Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     /**==========================================
@@ -74,7 +66,6 @@ public class Upload extends Activity {
             thumbsIDList = new ArrayList<String>();
             getThumbInfo(thumbsIDList, thumbsDataList);
         }
-
         public final void callImageViewer(int selectedIndex){
             Intent i = new Intent(mContext, UploadPopup.class);
             String imgPath = getImageInfo(imgData, geoData, thumbsIDList.get(selectedIndex));
