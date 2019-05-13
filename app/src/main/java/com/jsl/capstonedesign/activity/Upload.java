@@ -1,12 +1,16 @@
 package com.jsl.capstonedesign.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +20,19 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.jsl.capstonedesign.R;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Upload extends Activity {
 
@@ -46,9 +58,73 @@ public class Upload extends Activity {
         tx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"취소",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Upload.this,Main.class);
+                startActivity(intent);
             }
         });
+    }
+
+    private String mCurrentPhotoPath;
+
+    void requirePermission() {
+
+        String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        ArrayList<String> listPermissionsNeeded = new ArrayList<>();
+
+        for (String permission : permissions) {
+
+            if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED) {
+                //권한이 허가가 안됬을 경우 요청할 권한을 모집하는 부분
+                listPermissionsNeeded.add(permission);
+            }
+
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+
+            //권한 요청 하는 부분
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
+        }
+    }
+    void takePicture(){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            File phtoFile = createImageFile();
+            Uri photoUri = FileProvider.getUriForFile(this,"com.jsl.capstonedesign.fileprovider",phtoFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+            startActivityForResult(intent, 10);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private File createImageFile() throws IOException {
+
+        // Create an image file namΩe
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 10){
+
+            Intent i = new Intent(mContext, UploadPopup.class);
+
+            String imgPath = mCurrentPhotoPath;
+            i.putExtra("filename", imgPath);
+            startActivityForResult(i, 1);
+
+        }
     }
 
     /**==========================================
@@ -67,10 +143,18 @@ public class Upload extends Activity {
             getThumbInfo(thumbsIDList, thumbsDataList);
         }
         public final void callImageViewer(int selectedIndex){
-            Intent i = new Intent(mContext, UploadPopup.class);
-            String imgPath = getImageInfo(imgData, geoData, thumbsIDList.get(selectedIndex));
-            i.putExtra("filename", imgPath);
-            startActivityForResult(i, 1);
+            if (selectedIndex == 0)
+            {
+                requirePermission();
+                takePicture();
+            }
+            else {
+                Intent i = new Intent(mContext, UploadPopup.class);
+
+                String imgPath = getImageInfo(imgData, geoData, thumbsIDList.get(selectedIndex));
+                i.putExtra("filename", imgPath);
+                startActivityForResult(i, 1);
+            }
         }
 
         public boolean deleteSelected(int sIndex){
@@ -165,5 +249,7 @@ public class Upload extends Activity {
             imageCursor.close();
             return imageDataPath;
         }
+
+
     }
 }
