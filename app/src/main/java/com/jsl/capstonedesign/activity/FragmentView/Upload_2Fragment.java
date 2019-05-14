@@ -1,14 +1,21 @@
 package com.jsl.capstonedesign.activity.FragmentView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Upload_2Fragment extends Fragment {
@@ -40,7 +48,7 @@ public class Upload_2Fragment extends Fragment {
 
     private String mCurrentPhotoPath;
 
-/*    void requirePermission() {
+    void requirePermission() {
 
         String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         ArrayList<String> listPermissionsNeeded = new ArrayList<>();
@@ -53,14 +61,11 @@ public class Upload_2Fragment extends Fragment {
             }
 
         }
-
         if (!listPermissionsNeeded.isEmpty()) {
 
             //권한 요청 하는 부분
             ActivityCompat.requestPermissions(getActivity(), listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
         }
-
-
     }
     void takePicture(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -72,8 +77,6 @@ public class Upload_2Fragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     void getPicture(){
@@ -81,10 +84,9 @@ public class Upload_2Fragment extends Fragment {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,1);
-    }*/
+    }
 
     private File createImageFile() throws IOException {
-
 
         // Create an image file namΩe
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

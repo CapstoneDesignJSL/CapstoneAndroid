@@ -4,14 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <GridView
-        android:id="@+id/gridview1"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:gravity="center"
-        android:numColumns="3"
-        android:listSelector="@color/colorPrimary"
-        android:drawSelectorOnTop="true"/>
+        android:layout_height="600dp">
+
+        <GridView
+            android:id="@+id/gridview1"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:gravity="center"
+            android:numColumns="3"
+            android:listSelector="@color/colorPrimary"
+            android:drawSelectorOnTop="true" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
