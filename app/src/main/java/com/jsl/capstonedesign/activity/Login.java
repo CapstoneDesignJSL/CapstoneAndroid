@@ -15,10 +15,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
@@ -46,10 +49,11 @@ public class Login extends AppCompatActivity {
 
     //로그인
     public static GoogleSignInAccount account;
-    private static final int RC_SIGN_IN = 1001;
+    private static final int RC_SIGN_IN = 900;
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
     FirebaseUser user;
+    private GoogleSignInClient googleSignInClient;
     //retrofit
     private Retrofit retrofit ;
     private ApiService apiService;
@@ -98,6 +102,9 @@ public class Login extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
         ImageButton btn_login =(ImageButton) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new Button.OnClickListener()
                                      {
@@ -105,13 +112,13 @@ public class Login extends AppCompatActivity {
                                          public void onClick(View v)
                                          {
 
-
+                                            Intent signInIntent = googleSignInClient.getSignInIntent();
 //                                             Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-//                                             startActivityForResult(signInIntent, RC_SIGN_IN);
+                                             startActivityForResult(signInIntent, RC_SIGN_IN);
 //                                             finish();
-
-                                             Intent intent = new Intent(getApplicationContext(), Main.class);
-                                             startActivity(intent);
+//
+//                                             Intent intent = new Intent(getApplicationContext(), Main.class);
+//                                             startActivity(intent);
                                              //finish();
 
 
@@ -126,52 +133,74 @@ public class Login extends AppCompatActivity {
 
     public void onStart() { // 사용자가 현재 로그인되어 있는지 확인
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser!=null) {
-//            Intent intent = new Intent(getApplicationContext(), Main.class);
-//            startActivity(intent);
-//            finish();
-//        }
+//         Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null) {
+            Intent intent = new Intent(getApplicationContext(), Main.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Log.e(TAG,"onAcitvityResult");
+//
+//        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+//        if (requestCode == RC_SIGN_IN) {
+//
+//            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+//            if (result.isSuccess()) {
+//                // Google Sign In was successful, authenticate with Firebase
+//                account = result.getSignInAccount();
+//                email = account.getEmail();
+//                Log.e(TAG, "이름 =" + account.getDisplayName());
+//                Log.e(TAG, "이메일=" + email);
+////                Log.e(TAG, "getId()=" + account.getId());
+////                Log.e(TAG, "getAccount()=" + account.getAccount());
+////                Log.e(TAG, "getIdToken()=" + account.getIdToken());
+//                //firebaseAuthWithGoogle(account);
+//
+////                String wallet=data.getStringExtra("result");
+//                Intent intent = new Intent(getApplicationContext(), Main.class);
+//                startActivity(intent);
+//                finish();
+//
+//
+//
+//            } else {
+//                // Google Sign In failed, update UI appropriately
+//                // ...
+//                Log.e(TAG, "로그인 실패");
+//            }
+//
+//        }
+//    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e(TAG,"onAcitvityResult");
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        // 구글로그인 버튼 응답
         if (requestCode == RC_SIGN_IN) {
-
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
-                account = result.getSignInAccount();
-                email = account.getEmail();
-                Log.e(TAG, "이름 =" + account.getDisplayName());
-                Log.e(TAG, "이메일=" + email);
-//                Log.e(TAG, "getId()=" + account.getId());
-//                Log.e(TAG, "getAccount()=" + account.getAccount());
-//                Log.e(TAG, "getIdToken()=" + account.getIdToken());
-                //firebaseAuthWithGoogle(account);
-
-//                String wallet=data.getStringExtra("result");
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // 구글 로그인 성공
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
                 Intent intent = new Intent(getApplicationContext(), Main.class);
                 startActivity(intent);
                 finish();
 
+            } catch (ApiException e) {
 
-
-            } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
-                Log.e(TAG, "로그인 실패");
             }
-
         }
     }
-/*
+//
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -196,9 +225,27 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
-*/
 
-
+//
+//    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+//
+//        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+//        firebaseAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // 로그인 성공
+//                            Toast.makeText(Login.this, R.string.success_login, Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            // 로그인 실패
+//                            Toast.makeText(Login.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                });
+//    }
+//
 
 
 }

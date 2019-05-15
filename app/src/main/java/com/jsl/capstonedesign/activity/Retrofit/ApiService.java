@@ -7,10 +7,19 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
+import javax.xml.transform.Result;
+
+import okhttp3.MultipartBody;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -27,6 +36,12 @@ public interface ApiService {
     @GET("list")
     Call<ResponseBody>getPictureList();
 
-    
+    @FormUrlEncoded
+    @POST("upload")
+    Call<RequestBody>uploadImg(@Field("email_txt") String email, @Field("picture_name") String name, @Field("image") String img, @Field("price") float price);
+
+//    @FormUrlEncoded
+//    @POST("upload")
+//    Call<RequestBody>uploadImg(@Field("email_txt") String email, @Field("picture_name") String name, @Part MultipartBody.Part file, @Field("price") String price);
 
 }

@@ -56,7 +56,6 @@ public class Picture extends AppCompatActivity {
         builder.setPositiveButton("아니오",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        //Toast.makeText(getApplicationContext(),"우측버튼 클릭됨",Toast.LENGTH_LONG).show();
                     }
                 });
         builder.setNegativeButton("예",
@@ -65,7 +64,9 @@ public class Picture extends AppCompatActivity {
                         //Dialog2();
                         Intent intent = new Intent(getApplicationContext(), PurchaseSheet_2.class);
                         startActivity(intent);
-                        //Toast.makeText(getApplicationContext(),"좌측버튼 클릭됨",Toast.LENGTH_LONG).show();
+
+
+
                     }
                 });
         builder.show();
