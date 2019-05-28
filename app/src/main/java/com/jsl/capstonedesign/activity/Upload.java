@@ -154,6 +154,7 @@ public class Upload extends Activity {
                 String imgPath = getImageInfo(imgData, geoData, thumbsIDList.get(selectedIndex));
                 i.putExtra("filename", imgPath);
                 startActivityForResult(i, 1);
+                finish();
             }
         }
 
