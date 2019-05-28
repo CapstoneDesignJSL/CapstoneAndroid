@@ -30,8 +30,15 @@ public interface ApiService {
     Call<ResponseBody>getComment(@Query("email")String email);
 
     //2번 지갑 생성
-    @POST("eth/make")
-    Call<ResponseBody>postComment();
+    @GET("eth/mining")
+    Call<ResponseBody>mining(@Query("email")String email);
+
+    @POST("eth/bal")
+    Call<RequestBody>balance(@Query("email")String email);
+
+    @GET("eth/mining_stop")
+    Call<ResponseBody>mining_stop(@Query("email")String email);
+
 
     @GET("list")
     Call<ResponseBody>getPictureList();

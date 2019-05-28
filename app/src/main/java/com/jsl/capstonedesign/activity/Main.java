@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -22,11 +23,19 @@ import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.FragmentView.HomeFragment;
 import com.jsl.capstonedesign.activity.FragmentView.InquiryFragment;
 import com.jsl.capstonedesign.activity.FragmentView.UserFragment;
+import com.jsl.capstonedesign.activity.Retrofit.ApiService;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Main extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
-    //나중에 삭제할것  **수정
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
+
 
     //    private RecyclerView.Adapter adapter;
     @Override
@@ -39,6 +48,7 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
         final Fragment inquiryFragment = new InquiryFragment();
 //      final Fragment uploadFragment = new Upload_2Fragment();
         final Fragment userFragment = new UserFragment();
+
 
         Toolbar tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
@@ -65,6 +75,31 @@ public class Main extends AppCompatActivity implements BottomSheetDialog.BottomS
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
         //*************************************************로그인관련************
+
+
+//
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(ApiService.API_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        final ApiService apiService = retrofit.create(ApiService.class);
+//
+//        //Part of GET
+//        Call<ResponseBody> res = apiService.getComment(mAuth.getCurrentUser().getEmail());
+//
+//        res.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+////                Log.e(TAG, "onResponse in upload");
+//
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//  //              Log.e(TAG, "onFailure in upload");
+//
+//            }
+//        });
 
         //하단 네비게이션 바********************************************************************8888
 

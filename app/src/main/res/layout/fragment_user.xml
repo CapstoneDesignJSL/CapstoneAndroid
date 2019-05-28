@@ -77,13 +77,12 @@
                 android:background="@color/colorWhite"
                 android:orientation="vertical">
 
-                <ImageView
+                <TextView
                     android:id="@+id/user_name"
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/user_name" />
+                    android:text="양소연 회원님" />
 
                 <FrameLayout
                     android:layout_width="360dp"
@@ -109,16 +108,16 @@
                     </FrameLayout>
 
                     <FrameLayout
-                        android:layout_width="30dp"
+                        android:layout_width="36dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="300dp"
                         android:layout_marginTop="10dp">
 
-                        <ImageView
-                            android:id="@+id/user_bg3"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/balance"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/user_bg3" />
+                            android:text="0.3" />
                     </FrameLayout>
 
                     <FrameLayout

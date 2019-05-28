@@ -1,15 +1,19 @@
 package com.jsl.capstonedesign.activity.FragmentView;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -18,11 +22,27 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.Charge;
 import com.jsl.capstonedesign.activity.Login;
+import com.jsl.capstonedesign.activity.Main;
 import com.jsl.capstonedesign.activity.MainActivity;
 import com.jsl.capstonedesign.activity.Order_inquiry;
+import com.jsl.capstonedesign.activity.Retrofit.ApiService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class UserFragment extends Fragment {
 
@@ -31,6 +51,8 @@ public class UserFragment extends Fragment {
     private Button btn_logout;
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
+    private TextView bal;
+    private TextView usr;
 
     View v;
 
@@ -44,6 +66,10 @@ public class UserFragment extends Fragment {
 
         v = inflater.inflate(R.layout.fragment_user, container, false);
         btn_logout = v.findViewById(R.id.btn_logout);  //로그아웃 버튼
+        bal = v.findViewById(R.id.balance);
+        usr = v.findViewById(R.id.user_name);
+
+
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -60,7 +86,54 @@ public class UserFragment extends Fragment {
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        usr.setText(mAuth.getCurrentUser().getEmail()+" 회원");
         //*************************************************로그인관련************
+
+
+        //Part of GET
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiService.API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        final ApiService apiService = retrofit.create(ApiService.class);
+
+////         Check if user is signed in (non-null) and update UI accordingly.
+//        Call<RequestBody> res = apiService.balance(mAuth.getCurrentUser().getEmail());
+//
+//        Log.e(TAG, "onResponse in onResume"+ mAuth.getCurrentUser().getEmail());
+////
+//        res.enqueue(new Callback<RequestBody>() {
+//            @Override
+//            public void onResponse(Call<RequestBody> call, Response<RequestBody> response) {
+//                Log.e(TAG, "onResponse in onResume");
+//
+////                try {
+//                    Log.e(TAG, response.body().toString());
+//                    String str = response.body().toString();
+//                    try {
+//                        JSONObject js = new JSONObject(str);
+//                        String wei = js.getString("balance");
+//                        bal.setText(wei);
+//                    }catch (JSONException e){
+//
+//                    }
+////
+////                }catch (IOException e){
+////
+////                }
+//            }
+//            @Override
+//            public void onFailure(Call<RequestBody> call, Throwable t) {
+//                Log.e(TAG, "onFailure in upload");
+//
+//            }
+//        });
+
+
 
         btn_logout.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -90,12 +163,24 @@ public class UserFragment extends Fragment {
                                           {
                                               Intent intent = new Intent(getActivity(), Charge.class);
                                               startActivity(intent);
+                                              FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                              fragmentManager.beginTransaction().remove(UserFragment.this).commit();
+                                              fragmentManager.popBackStack();
                                           }
                                       }
         );
 
         return v;
     }
+
+
+    public void onResume() { // 사용자가 현재 로그인되어 있는지 확인
+        super.onResume();
+        Log.e(TAG, "onResume in user");
+
+
+    }
+
 
     public void signOut() {
         mGoogleApiClient.connect();

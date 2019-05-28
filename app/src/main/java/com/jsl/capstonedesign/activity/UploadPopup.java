@@ -16,6 +16,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.jsl.capstonedesign.R;
 import com.jsl.capstonedesign.activity.Retrofit.ApiService;
 import com.jsl.capstonedesign.activity.recyclerview.Data;
@@ -50,10 +60,15 @@ public class UploadPopup extends Activity implements OnClickListener {
     private String imgPath;
     private Bitmap bm;
 
+    private GoogleApiClient mGoogleApiClient;
+    private FirebaseAuth mAuth;
+    private GoogleSignInClient googleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.imagepopup);
+
         mContext = this;
 
         /** 전송메시지 */
@@ -71,6 +86,26 @@ public class UploadPopup extends Activity implements OnClickListener {
         bm = BitmapFactory.decodeFile(imgPath, bfo);
         Bitmap resized = Bitmap.createScaledBitmap(bm, imgWidth, imgHeight, true);
         iv.setImageBitmap(resized);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(new MainActivity(), new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+                    }
+                })
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+
 
         Button btn = findViewById(R.id.btn_upload_cancel);
         Button btn2 = findViewById(R.id.btn_upload_register);
@@ -92,9 +127,11 @@ public class UploadPopup extends Activity implements OnClickListener {
                 String name = nameEdit.getText().toString();
                 String pricevalue = priceEdit.getText().toString();
 //                float price = Float.parseFloat(pricevalue);
-                pricevalue="0";
+                pricevalue="2";
                 upload(name, pricevalue);
 
+                Intent intent2 = new Intent(mContext, Main.class);
+                startActivity(intent2);
 
 //                Toast.makeText(mContext, pricename+pricevalue, Toast.LENGTH_SHORT).show();
                 break;
@@ -110,8 +147,11 @@ public class UploadPopup extends Activity implements OnClickListener {
 
     public void upload(String name, String price_str){
 
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+
         String str_img =  getStringFromBitmap(bm);
-        String email = "dlgusrb0813@gmail.com";
+        String email = currentUser.getEmail();//"dlgusrb0813@gmail.com";
 
         float price = Float.parseFloat(price_str);
 
@@ -121,22 +161,6 @@ public class UploadPopup extends Activity implements OnClickListener {
                 .build();
 
         final ApiService apiService = retrofit.create(ApiService.class);
-        Uri url = Uri.parse(imgPath);
-        // create RequestBody instance from file
-        RequestBody requestFile =
-                RequestBody.create(
-                        MediaType.parse(
-                      //   getContentResolver().getType(url))
-                        "multipart/form-data")
-                    ,
-                        img
-                );
-
-
-        // MultipartBody.Part is used to send also the actual file name
-        MultipartBody.Part body =
-                MultipartBody.Part.createFormData("picture", img.getName(), requestFile);
-
 
         //Part of GET
         Call<RequestBody> res = apiService.uploadImg(email,name,str_img,price);
@@ -146,13 +170,10 @@ public class UploadPopup extends Activity implements OnClickListener {
             public void onResponse(Call<RequestBody> call, Response<RequestBody> response) {
                 Log.e(TAG, "onResponse in upload");
 
-
             }
             @Override
             public void onFailure(Call<RequestBody> call, Throwable t) {
                 Log.e(TAG, "onFailure in upload");
-
-
 
             }
         });
