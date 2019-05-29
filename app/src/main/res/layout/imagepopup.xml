@@ -1,140 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.UploadPopup">
-
-    <LinearLayout
+    android:orientation="vertical">
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-
-        <TextView
-            android:id="@+id/txt_home"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:text=""
-            android:textColor="@color/colorPrimary"
-            android:textSize="40dp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical"
-            >
-
-            <!--라디오 버튼 구현 카테고리-->
-
-
-            <EditText
-                android:id="@+id/sell_name"
-                android:layout_width="320dp"
-                android:layout_height="50dp"
-                android:hint="상품명"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/colorAccent"
-                android:textColorHint="@color/colorAccent"
-                android:background="@color/colorWhite"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                />
-
-
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="판매가격"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="25dp"
-            />
+            android:orientation="vertical">
 
-
-        <EditText
-            android:id="@+id/sell_price"
-            android:layout_width="320dp"
-            android:layout_height="50dp"
-            android:hint="가격"
-            android:inputType="number"
-            android:digits="0123456789"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorAccent"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorWhite"
-            android:layout_marginBottom="5dp"
-            />
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="30dp"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical"
-            >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                />
-            <!--상품 설명 적을 수 있는 곳-->
+                android:layout_height="128dp"
+                android:background="@drawable/homebg">
 
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="25dp">
 
-            <ImageView
-                android:id="@+id/sell_image"
+                    <ImageView
+                        android:id="@+id/back_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/charge_backbtn" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="125dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp">
+
+                    <TextView
+                        android:id="@+id/pagename"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="사진 업로드"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="25dp" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lowerlayout"
                 android:layout_width="match_parent"
-                android:layout_height="290dp"
-                android:layout_marginTop="3dp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/upload_1" />
+
+                    <ImageView
+                        android:id="@+id/sell_image"
+                        android:layout_width="385dp"
+                        android:layout_height="220dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="195dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/upload_2" />
+
+                    <EditText
+                        android:id="@+id/sell_name"
+                        android:layout_width="385dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/line"
+                        android:hint="제목"
+                        android:textColorHint="#C0C0C0" />
+
+                    <EditText
+                        android:id="@+id/sell_contents"
+                        android:layout_width="385dp"
+                        android:layout_height="90dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/line"
+                        android:gravity=""
+                        android:hint="내용을 입력해 주세요."
+                        android:textColorHint="#C0C0C0" />
+
+                    <EditText
+                        android:id="@+id/sell_price"
+                        android:layout_width="385dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/line"
+                        android:gravity=""
+                        android:hint="가격"
+                        android:textColorHint="#C0C0C0" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp">
+
+                    <TextView
+                        android:id="@+id/price_1"
+                        android:layout_width="92dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/line"
+                        android:gravity="center"
+                        android:text="1ETH" />
+
+                    <TextView
+                        android:id="@+id/price_2"
+                        android:layout_width="92dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/line"
+                        android:gravity="center"
+                        android:text="2ETH" />
+
+                    <TextView
+                        android:id="@+id/price_3"
+                        android:layout_width="92dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/line"
+                        android:gravity="center"
+                        android:text="5ETH" />
+
+                    <TextView
+                        android:id="@+id/price_4"
+                        android:layout_width="92dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/line"
+                        android:gravity="center"
+                        android:text="10ETH" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btn_upload_cancel"
+                        android:layout_marginLeft="50dp"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
+                        android:background="@color/colorPrimary"
+                        android:text="취소"
+                        android:textColor="@color/colorWhite"/>
+
+                    <Button
+                        android:id="@+id/btn_upload_register"
+                        android:layout_width="120dp"
+                        android:layout_marginLeft="70dp"
+                        android:layout_height="30dp"
+                        android:background="@color/colorPrimary"
+                        android:text="확인"
+                        android:textColor="@color/colorWhite"/>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btn_upload_register"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="30dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorPrimary"
-                android:text="등록하기"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btn_upload_cancel"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="100dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/colorPrimary"
-                android:text="취소하기"
-                android:textColor="@color/colorWhite"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

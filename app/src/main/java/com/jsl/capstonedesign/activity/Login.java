@@ -125,9 +125,9 @@ public class Login extends AppCompatActivity {
                                              startActivityForResult(signInIntent, RC_SIGN_IN);
 //                                             finish();
 //
-//                                             Intent intent = new Intent(getApplicationContext(), Main.class);
-//                                             startActivity(intent);
-                                             //finish();
+//                                            Intent intent = new Intent(getApplicationContext(), Main.class);
+//                                            startActivity(intent);
+//                                             finish();
 
 
                                          }
