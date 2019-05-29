@@ -45,7 +45,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("upload")
-    Call<RequestBody>uploadImg(@Field("email_txt") String email, @Field("picture_name") String name, @Field("image") String img, @Field("price") float price);
+    Call<RequestBody>uploadImg(@Field("email_txt") String email, @Field("picture_name") String name, @Field("image") String img, @Field("price") int price);
 
 //    @FormUrlEncoded
 //    @POST("upload")

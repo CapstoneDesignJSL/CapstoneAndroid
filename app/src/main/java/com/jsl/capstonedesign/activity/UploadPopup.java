@@ -153,7 +153,7 @@ public class UploadPopup extends Activity implements OnClickListener {
         String str_img =  getStringFromBitmap(bm);
         String email = currentUser.getEmail();//"dlgusrb0813@gmail.com";
 
-        float price = Float.parseFloat(price_str);
+        int price = Integer.parseInt(price_str);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.API_URL)
