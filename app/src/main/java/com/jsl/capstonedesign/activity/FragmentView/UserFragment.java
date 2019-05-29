@@ -143,18 +143,6 @@ public class UserFragment extends Fragment {
             }
         });
 
-        Button btn_order =(Button) v.findViewById(R.id.user_inqbg);
-        btn_order.setOnClickListener(new Button.OnClickListener()
-                                     {
-                                         @Override
-                                         public void onClick(View v)
-                                         {
-                                             Intent intent = new Intent(getActivity(), Order_inquiry.class);
-                                             startActivity(intent);
-                                         }
-                                     }
-        );
-
         Button btn_charge =(Button) v.findViewById(R.id.btn_charge);
         btn_charge.setOnClickListener(new Button.OnClickListener()
                                       {

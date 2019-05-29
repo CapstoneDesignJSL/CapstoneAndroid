@@ -44,9 +44,9 @@
         android:id="@+id/bottomNavigationView_main_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemBackground="?attr/colorPrimary"
-        app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white"
+        app:itemBackground="@color/colorWhite"
+        app:itemIconTint="@android:color/darker_gray"
+        app:itemTextColor="@android:color/darker_gray"
         app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
         app:layout_constraintHorizontal_bias="0.0"
 

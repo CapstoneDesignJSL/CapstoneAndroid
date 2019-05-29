@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menuitem_bottombar_home"
-        android:icon="@drawable/ic_baseline_home_24px"
+        android:icon="@drawable/bottom_1"
         android:title="HOME"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_category"
+        android:icon="@drawable/bottom_2"
         android:title="CATEGORY"
-        android:icon="@drawable/category"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_uproad"
-        android:icon="@drawable/upload"
+        android:icon="@drawable/bottom_3"
         android:title="UPLOAD"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_inquire"
-        android:icon="@drawable/ic_menu_black_24dp"
+        android:icon="@drawable/bottom_4"
         android:title="INQUIRE"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/menuitem_bottombar_user"
-        android:icon="@drawable/ic_person_black_24dp"
+        android:icon="@drawable/bottom_5"
         android:title="USER"
         app:showAsAction="ifRoom"/>
 
